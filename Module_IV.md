@@ -1,4 +1,7 @@
-## Calculating a Genetic Risk Score
+# Calculating a Genetic Risk Score
+
+- **Author(s):** Sara Bandres-Ciga
+- **Date Last Updated:** April. 2020
 
 ### GRS versus disease status (Nalls et al., 2019)
 
