@@ -23,7 +23,6 @@ It allows identifying variants documented in different databases (eg, whether or
 
 ```
 cd /data/LNG/saraB/ANNO/
-
 ```
 ## Make a folder to store outputs ..
 
