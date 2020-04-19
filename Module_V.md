@@ -25,7 +25,7 @@ It allows identifying variants documented in different databases (eg, whether or
 cd /data/LNG/saraB/ANNO/
 
 ```
-## Make a folder where we want to store your outputs ..
+## Make a folder to store outputs ..
 
 ```
 mkdir ANNOVAR_output
@@ -54,7 +54,7 @@ convert2annovar.pl -format vcf4 /data/LNG/saraB/ANNO/ANNOVAR_input/FILTERED.atax
 ```
 VCF is the gold standard format that most researchers use. Normally we start from a * .VCF file and make it a more manageable * .avinput input.
 
-## Annotate avinput file taking into account hg38
+## Annotate avinput file taking into account hg38 positions
 ```
 table_annovar.pl /data/LNG/saraB/ANNO/ANNOVAR_input/FILTERED.ataxia_chr1.WES.avinput ANNOVAR_DATA/hg38 -buildver hg38 \
 ```
@@ -62,7 +62,7 @@ AMP-PD WGS data has been aligned with the human genome construct version GRCh38.
 
 The table_annovar.pl argument is a command used to annotate your input and generate a tab-delimited output that contains representative columns for each of the annotations.
 
-## Especificamos el directorio y nombre de nuestro output 
+## Specify directory and output name
 ```
 -out /data/LNG/saraB/ANNO/ANNOVAR_output/FILTERED.ataxia_chr1.WES \
 ```
