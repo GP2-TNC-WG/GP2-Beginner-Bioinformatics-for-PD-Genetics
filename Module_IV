@@ -29,7 +29,7 @@ sdControls <- sd(data$SCORE[data$CASE == 0])
 data$zSCORE <- (data$SCORE - meanControls)/sdControls
 ```
 
-* Perform logistic regression
+* Normalize Score to Z-Score and perform linear regression adjusted by covariates
 
 ```
 grsTests <- glm(CASE ~ zSCORE + SEX + PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + CONSENSUS_AGE, family="binomial", data = data)
@@ -37,6 +37,8 @@ summary(grsTests)
 ```
 
 ###AAO GRS - Nalls 2019 versus AAO
+
+* Perform logistic regression adjusted by covariates
 
 ```
 cases <- subset(data, PHENO == 1)
@@ -47,7 +49,9 @@ grsTests <- lm(AGE_onset ~ zSCORE + SEX + PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC
 summary(grsTests)
 ```
 
-# Violin plots
+## Data visualization
+
+### Violin plots
 
 ```
 data$PHENO[data$PHENO ==1] <- "Controls"
@@ -60,11 +64,11 @@ p2 + scale_fill_manual(values=c("lightblue", "orange")) + theme_bw() + ylab("PD 
 ggsave("PD_GRS.jpeg", dpi = 600, units = "in", height = 6, width = 6)
 
 ```
-# Density plots
+### Density plots
 
-# Quantile plots
+### Quantile plots
 
-# ROC calculation
+### ROC calculation
 
 ```
 library("pROC")
@@ -74,8 +78,6 @@ ci(rocAuc, of="auc")
 coords(rocAuc, "best")
 thresh <- coords(rocAuc, "best")[1]
 ```
-
-#above are the summary statistics
 
 ```
 png("rocCurve.png", width = 5.5, height = 4, units = "in", res = 300)
