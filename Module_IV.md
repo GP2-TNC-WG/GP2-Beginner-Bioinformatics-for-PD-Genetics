@@ -1,6 +1,6 @@
 ## Calculating a Genetic Risk Score
 
-### PD GRS - Nalls 2019 versus disease status
+### GRS versus disease status (Nalls et al., 2019)
 
 * Load R libraries
 
@@ -36,7 +36,7 @@ grsTests <- glm(CASE ~ zSCORE + SEX + PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + 
 summary(grsTests)
 ```
 
-### AAO GRS - Nalls 2019 versus AAO
+### GRS versus age at onset (Blauwendraat et al., 2019)
 
 * Perform logistic regression adjusted by covariates
 
