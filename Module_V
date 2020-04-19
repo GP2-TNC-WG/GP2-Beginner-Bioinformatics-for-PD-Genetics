@@ -2,7 +2,6 @@
 	- **Author(s):** Sara Bandres-Ciga
 	- **Date Last Updated:** April. 2020
   
-  
 ## Introduction
 
 ANNOVAR is an efficient tool that uses updated information to functionally annotate genetic variants detected from different genomes (eg, human genome in versions hg18, hg19, hg38 as well as other species such as mouse, yeast, fly, ecc.).
@@ -20,13 +19,13 @@ It allows identifying variants in specific regions of the genome (eg regions con
 
 It allows identifying variants documented in different databases (eg, whether or not a certain variant is reported in dbSNP, what is the allele frequency in 1000 genomes or ExAC, as well as calculating the scores from SIFT / PolyPhen / LRT / MutationTaster / MutationAssessor / FATHMM / MetaSVM / MetaLR, identify intergenic variants using GERP ++ score <2, among others).
 
-## To begin, we will locate in our directory ..
+## Set up your directory ..
 
 ```
 cd /data/LNG/saraB/ANNO/
 
 ```
-## We will create a folder where we want to store our outputs ..
+## Make a folder where we want to store your outputs ..
 
 ```
 mkdir ANNOVAR_output
