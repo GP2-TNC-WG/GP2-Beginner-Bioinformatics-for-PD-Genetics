@@ -16,10 +16,11 @@ plink --bfile test --score META5_GRS_chr_bp.txt --out GRS_PD_test.profile
 ```
 
 Where:
+```
 test = standard binary file prefix (will point to .bed, .bim, and .fam files)
 GRS_PD_test.profile = whatever you want it to be, the output will have the extension .profile
 META5_GRS_chr_bp.txt = file with variant-name, allele and score-value
-
+```
 ### Load R libraries
 
 ```
