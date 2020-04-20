@@ -3,7 +3,22 @@
 - **Author(s):** Sara Bandres-Ciga
 - **Date Last Updated:** April. 2020
 
+## Introduction
+
+Genetic risk scores (AKA: polygenic scores, polygenic risk scores, or genome-wide scores) is a summary measure of a set of risk-associated genetic variants and can be easily calculated using PLINK
+
 ## GRS versus disease status (Nalls et al., 2019)
+
+### Calculate profile in PLINK
+
+```
+plink --bfile test --score META5_GRS_chr_bp.txt --out GRS_PD_test.profile
+```
+
+Where:
+test = standard binary file prefix (will point to .bed, .bim, and .fam files)
+GRS_PD_test.profile = whatever you want it to be, the output will have the extension .profile
+META5_GRS_chr_bp.txt = file with variant-name, allele and score-value
 
 ### Load R libraries
 
