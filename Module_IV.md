@@ -82,12 +82,29 @@ data$quantiles[data$quantile2 == 1] <- 2
 data$quantiles[data$quantile3 == 1] <- 3
 data$quantiles[data$quantile4 == 1] <- 4
 quintileTests <- glm(CASE ~ as.factor(data$quantiles) + as.factor(data$DATASET) + AGE + SEX_COV + PC1 + PC2 + PC3 + PC4 + PC5, family="binomial", data = data)
-summary(quintileTests)
-exp(quintileTests$coef)
 
 ```
-* Make quantiles plot
+* Sumarize the regression and export a table
 
+```
+summary(quintileTests)
+summary_stats <- data.frame(summary(quintileTests)$coef[2:4,1:2])
+names(summary_stats) <- c("BETA","SE")
+summary_stats$QUANTILE <- c("2nd","3rd","4th")
+summary_stats[4,] <- c(0,0,"1st")
+summary_stats_sorted <- summary_stats[order(summary_stats$QUANTILE),]
+write.table(summary_stats_sorted, "quantile_table.csv", quote = F, row.names = F, sep = ",")
+```
+
+* Make quantile plot
+
+```
+to_plot <- read.table("quantile_table.csv", header = T, sep = ",")
+to_plot$low <- to_plot$BETA - (1.96*to_plot$SE)
+to_plot$high <- to_plot$BETA + (1.96*to_plot$SE)
+plotted <- ggplot(to_plot, aes(QUANTILE, BETA)) + geom_pointrange(aes(ymin = low, ymax = high))
+ggsave(plot = plotted, filename = "plotQuantile.png", width = 4, height = 4, units = "in", dpi = 300)
+```
 
 ### ROC calculation
 
