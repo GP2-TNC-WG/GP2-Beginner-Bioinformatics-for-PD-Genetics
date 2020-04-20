@@ -70,6 +70,25 @@ ggsave("PD_GRS.jpeg", dpi = 600, units = "in", height = 6, width = 6)
 
 ### Quantile plots
 
+* Make quantiles
+
+```
+data$quantile1 <- ifelse(data$zSCORE <= quantile(data$zSCORE)[2], 1, 0)
+data$quantile2 <- ifelse(data$zSCORE > quantile(data$zSCORE)[2] & data$zSCORE <= quantile(data$zSCORE)[3], 1, 0)
+data$quantile3 <- ifelse(data$zSCORE > quantile(data$zSCORE)[3] & data$zSCORE <= quantile(data$zSCORE)[4], 1, 0)
+data$quantile4 <- ifelse(data$zSCORE > quantile(data$zSCORE)[4], 1, 0)
+data$quantiles <- 1
+data$quantiles[data$quantile2 == 1] <- 2
+data$quantiles[data$quantile3 == 1] <- 3
+data$quantiles[data$quantile4 == 1] <- 4
+quintileTests <- glm(CASE ~ as.factor(data$quantiles) + as.factor(data$DATASET) + AGE + SEX_COV + PC1 + PC2 + PC3 + PC4 + PC5, family="binomial", data = data)
+summary(quintileTests)
+exp(quintileTests$coef)
+
+```
+* Make quantiles plot
+
+
 ### ROC calculation
 
 * Load additional packages
@@ -84,21 +103,21 @@ lapply(packageList, library, character.only = TRUE)
 bestModel <- glm(PHENO ~ SCORE, data = data, family = 'binomial')
 ```
 
-* make predictions
+* Make predictions
 
 ```
 data$predicted <- predict(bestModel, data)
 data$probDisease <- predict(bestModel, data, type = "prob")[2]
 ```
 
-* make ROC plots
+* Make ROC plots
 
 ```
 overlayedRocs <- ggplot(data, aes(d = PHENO, m = probDisease)) + geom_roc(labels = FALSE) + geom_rocci() + style_roc(theme = theme_gray) + theme_bw() + scale_fill_brewer(palette="Spectral")
 ggsave(plot = overlayedRocs, filename = "plotRoc.png", width = 8, height = 5, units = "in", dpi = 300)
 ```
 
-* show the confusion matrix (specificity and sensitivity)
+* Show the confusion matrix (specificity and sensitivity)
 
 ```
 confMat <- confusionMatrix(data = as.factor(trained$predicted), reference = as.factor(trained$PHENO), positive = "DISEASE")
