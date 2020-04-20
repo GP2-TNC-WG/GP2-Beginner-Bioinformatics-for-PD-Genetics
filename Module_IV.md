@@ -9,7 +9,7 @@ Genetic risk scores (AKA: polygenic scores, polygenic risk scores, or genome-wid
 
 ## GRS versus disease status (Nalls et al., 2019)
 
-### Calculate profile in PLINK
+### Calculate Score (profile) in PLINK
 
 ```
 plink --bfile test --score META5_GRS_chr_bp.txt --out GRS_PD_test.profile
@@ -21,6 +21,7 @@ test = standard binary file prefix (will point to .bed, .bim, and .fam files)
 GRS_PD_test.profile = whatever you want it to be, the output will have the extension .profile
 META5_GRS_chr_bp.txt = file with variant-name, allele and score-value
 ```
+
 ### Load R libraries
 
 ```
@@ -31,24 +32,24 @@ library(plyr)
 library(ggplot2)
 ```
 
-### Calculate Score in cases versus controls 
+### Read PLINK output, merge with covariate file and recode CASE (1) and CONTROL (0)
 
 ```
 temp_data <- read.table("GRS_PD_test.profile", header = T) 
 temp_covs <- read.table("test_covs.txt", header = T)
 data <- merge(temp_data, temp_covs, by = "FID")
 data$CASE <- data$PHENO - 1
-meanControls <- mean(data$SCORE[data$CASE == 0])
-sdControls <- sd(data$SCORE[data$CASE == 0])
 ```
 
 ### Normalize Score to Z-Score 
 
 ```
+meanControls <- mean(data$SCORE[data$CASE == 0])
+sdControls <- sd(data$SCORE[data$CASE == 0])
 data$zSCORE <- (data$SCORE - meanControls)/sdControls
 ```
 
-### Normalize Score to Z-Score and perform logistic regression adjusted by covariates
+### Perform logistic regression adjusted by covariates
 
 ```
 grsTests <- glm(CASE ~ zSCORE + SEX + PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + CONSENSUS_AGE, family="binomial", data = data)
