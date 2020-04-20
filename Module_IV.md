@@ -58,7 +58,7 @@ summary(grsTests)
 
 ## GRS versus age at onset (Blauwendraat et al., 2019)
 
-### Perform linear regression adjusted by covariates
+### Subset ONLY cases perform linear regression adjusted by covariates
 
 ```
 cases <- subset(data, PHENO == 1)
@@ -101,7 +101,7 @@ data$quantiles[data$quantile4 == 1] <- 4
 quintileTests <- glm(CASE ~ as.factor(data$quantiles) + as.factor(data$DATASET) + AGE + SEX_COV + PC1 + PC2 + PC3 + PC4 + PC5, family="binomial", data = data)
 
 ```
-* Sumarize the regression and export a table
+* Summarize the regression and export a table
 
 ```
 summary(quintileTests)
@@ -131,7 +131,7 @@ ggsave(plot = plotted, filename = "plotQuantile.png", width = 4, height = 4, uni
 packageList <- c("caret","ggplot2","data.table","plotROC")
 lapply(packageList, library, character.only = TRUE)
 ```
-* Build your basic model as best you can
+* Build your best model 
 
 ```
 bestModel <- glm(PHENO ~ SCORE, data = data, family = 'binomial')
