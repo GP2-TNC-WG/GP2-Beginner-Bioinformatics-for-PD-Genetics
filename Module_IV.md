@@ -73,19 +73,37 @@ ggsave("PD_GRS.jpeg", dpi = 600, units = "in", height = 6, width = 6)
 
 ### ROC calculation
 
-```
-library("pROC")
-rocAuc <- roc(data$label,data$predictedLabel)
-auc(rocAuc)
-ci(rocAuc, of="auc")
-coords(rocAuc, "best")
-thresh <- coords(rocAuc, "best")[1]
-```
+* Load additional packages
 
 ```
-png("rocCurve.png", width = 5.5, height = 4, units = "in", res = 300)
-rocobj <- plot.roc(data$label, data$predictedLabel,  main="ROC curve", percent=FALSE,  ci=TRUE, print.auc=TRUE, col = "darkred")
-ciobj <- ci.se(rocobj, specificities=seq(0, 1, 0.05))
-plot(ciobj, type="shape", col=alpha("dark red", 1/2))
-dev.off()
+packageList <- c("caret","ggplot2","data.table","plotROC")
+lapply(packageList, library, character.only = TRUE)
+```
+* build your basic model as best you can
+
+```
+bestModel <- glm(PHENO ~ SCORE, data = data, family = 'binomial')
+```
+
+* make predictions
+
+```
+data$predicted <- predict(bestModel, data)
+data$probDisease <- predict(bestModel, data, type = "prob")[2]
+```
+
+* make the density and ROC plots
+
+```
+overlayedRocs <- ggplot(data, aes(d = PHENO, m = probDisease)) + geom_roc(labels = FALSE) + geom_rocci() + style_roc(theme = theme_gray) + theme_bw() + scale_fill_brewer(palette="Spectral")
+ggsave(plot = overlayedRocs, filename = "plotRoc.png", width = 8, height = 5, units = "in", dpi = 300)
+densPlot <- ggplot(data, aes(probDisease, fill = PHENO, color = PHENO)) + geom_density(alpha = 0.5) + theme_bw()
+ggsave(plot = densPlot, filename = "plotDensity.png", width = 8, height = 5, units = "in", dpi = 300)
+```
+
+* show the confusion matrix
+
+```
+confMat <- confusionMatrix(data = as.factor(trained$predicted), reference = as.factor(trained$PHENO), positive = "DISEASE")
+confMat
 ```
