@@ -32,7 +32,7 @@ sdControls <- sd(data$SCORE[data$CASE == 0])
 data$zSCORE <- (data$SCORE - meanControls)/sdControls
 ```
 
-### Normalize Score to Z-Score and perform linear regression adjusted by covariates
+### Normalize Score to Z-Score and perform logistic regression adjusted by covariates
 
 ```
 grsTests <- glm(CASE ~ zSCORE + SEX + PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + CONSENSUS_AGE, family="binomial", data = data)
@@ -41,7 +41,7 @@ summary(grsTests)
 
 ## GRS versus age at onset (Blauwendraat et al., 2019)
 
-### Perform logistic regression adjusted by covariates
+### Perform linear regression adjusted by covariates
 
 ```
 cases <- subset(data, PHENO == 1)
