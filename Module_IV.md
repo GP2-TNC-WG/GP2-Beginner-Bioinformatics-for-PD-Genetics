@@ -1,7 +1,7 @@
-# Calculating a Genetic Risk Score
+## Module IV. Polygenic risk score in Parkinson Disease
 
-- **Author(s):** Sara Bandres-Ciga
-- **Date Last Updated:** April. 2020
+#### Information
+Created by: GP2 Training and Networking
 
 ## Introduction
 
