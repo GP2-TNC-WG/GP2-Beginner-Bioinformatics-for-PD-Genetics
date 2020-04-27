@@ -1,6 +1,6 @@
-# Variant annotation and prioritization using whole exome and whole genome sequencing
-	- **Author(s):** Sara Bandres-Ciga
-	- **Date Last Updated:** April. 2020
+# Module V. Variant annotation and prioritization using whole exome and whole genome sequencing
+	
+	
   
 ## Introduction
 
