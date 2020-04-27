@@ -1,6 +1,7 @@
 ## Module IV. Polygenic risk score in Parkinson Disease
 
 #### Information
+
 Created by: GP2 Training and Networking
 
 ## Introduction
