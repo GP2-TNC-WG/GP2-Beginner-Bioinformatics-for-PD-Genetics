@@ -2,7 +2,7 @@
 
 #### Information
 
-Created by: GP2 Training and Networking
+* Created by: GP2 Training and Networking
 
 ## Introduction
 
