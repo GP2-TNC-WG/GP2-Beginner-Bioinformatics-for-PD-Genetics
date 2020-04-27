@@ -1,6 +1,6 @@
 # Module V. Variant annotation and prioritization using whole exome and whole genome sequencing
 	
-	
+* Created by: GP2 Training and Networking	
   
 ## Introduction
 
