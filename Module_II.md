@@ -10,7 +10,7 @@ YOU NEED:
 * Samtools
 * Python 2.7 (optional)
 * 7zip or other decompression software
-* R
+* R (optional)
 
 ### Table of Contents
 #### [0. Workspace outline/Introduction](#0)
