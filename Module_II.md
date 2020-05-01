@@ -1,7 +1,7 @@
+## Module III.  GWAS for Binary and Quantitative Traits 
 
-# Beginner Bioinformatics for Parkinson Disease Genetics
-
-## Module 2: Imputation
+### Information
+- **Created by:** GP2 Training and Networking 
 
 YOU NEED:
 
@@ -25,6 +25,8 @@ YOU NEED:
 
 <a id="1"></a>
 # 0. Workspace outline/Introduction
+        
+Your folder or workspace does not have to look like this. It's just given to you so you can follow along the demo.
 
 Starting input data = `FILTERED_demofile/FILTERED.test{.bed,bim,fam}`
 
@@ -42,8 +44,6 @@ Our folder structure is as follows:
         ├── HRC-1000G-check-bim.pl
         ├── HRC.r1-1.GRCh37.wgs.mac5.sites.tab
         └── GP2_module2.ipynb
-        
-Your folder does not have to look like this. It's just given to you so you can follow along the demo.
 
 <a id="1"></a>
 # 1. Post-QC data formatting
