@@ -1,4 +1,4 @@
-## Module III.  GWAS for Binary and Quantitative Traits 
+## Module II.  Imputation
 
 ### Information
 - **Created by:** GP2 Training and Networking 
