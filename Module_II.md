@@ -5,12 +5,20 @@
 
 YOU NEED:
 
+*Software*
+
+* Bash shell
 * PLINK 1.9
-* BCF/VCFTools
-* Samtools
-* Python 2.7 (optional)
+* BCFTools
 * 7zip or other decompression software
-* R (optional)
+* Perl
+* Python 2.7 (optional)
+* R 3.6 (optional)
+
+*Scripts*
+* HRC-1000G-check-bim-v4.2.13.zip (unzipped) by William Rayner: https://www.well.ox.ac.uk/~wrayner/tools/
+* HRC Panel (HRC.r1-1.GRCh37.wgs.mac5.sites.tab) http://www.haplotype-reference-consortium.org/site 
+* CheckVCF (optional) https://github.com/zhanxw/checkVCF
 
 ### Table of Contents
 #### [0. Workspace outline/Introduction](#0)
@@ -25,10 +33,8 @@ YOU NEED:
 
 <a id="0"></a>
 # 0. Workspace outline/Introduction
-        
-Your folder or workspace does not have to look like this. It's just given to you so you can follow along the demo.
 
-Starting input data = `FILTERED_demofile/FILTERED.test{.bed,bim,fam}`
+Welcome to module II of GP2 Bioinformatics Course. Please note that this markdown notebook is designed to be followed along with the video lesson.
 
 Our folder structure is as follows:
 
@@ -44,6 +50,10 @@ Our folder structure is as follows:
         ├── HRC-1000G-check-bim.pl
         ├── HRC.r1-1.GRCh37.wgs.mac5.sites.tab
         └── GP2_module2.ipynb
+
+Your folder or workspace does not have to look like this. It's just given to you so you can follow along the demo.
+
+Our starting input data are PLINK binary files `FILTERED_demofile/FILTERED.test{.bed,bim,fam}`.
 
 <a id="1"></a>
 # 1. Post-QC data formatting
@@ -749,8 +759,10 @@ Hardcall: rsq > 0.8
 
 Copy and save the following as `filter_variants_maf_r2_updated.R`
 
-    if (!"plyr" %in% rownames(installed.packages())) {
+    if (!"tidyverse" %in% rownames(installed.packages())) {
       install.packages("tidyverse", repos = "https://cloud.r-project.org")
+    }
+    if (!"data.table" %in% rownames(installed.packages())) {
       install.packages("data.table", repos = "https://cloud.r-project.org")
     }
 
