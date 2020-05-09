@@ -17,6 +17,12 @@
 
 ## 0. Getting started
 
+Files that you will need:
+
+**Variant calling format (VCF)** that you would like to annotate
+
+**ANNOVAR resources**
+
 ANNOVAR is an efficient tool that uses updated information to functionally annotate genetic variants detected from different genomes (eg, human genome in versions hg18, hg19, hg38 as well as other species such as mouse, yeast, fly, ecc.).
 This package can make the following annotations:
 
