@@ -30,15 +30,17 @@ Genetic risk scores (AKA: polygenic scores, polygenic risk scores, or genome-wid
 
 Files that you will need:
 
-QC’d Imputed PLINK Binary Files containing cases and controls (.fam, .bim, .bed files)
+**QC’d Imputed PLINK Binary Files** containing cases and controls (.fam, .bim, .bed files)
 
 These have gone through Michigan Server imputation and the soft/hard-call QC steps outlined in Module II
 
-Covariates File containing the covariates you would like to correct by (more on this in section 1)
+**Covariates File** containing the covariates you would like to correct by
 
 This file at a minimum includes sample information (such as ID, SEX, PHENO) and principle components
 
-SCORE file containing  the 90 risk loci (variant identifier, A1, Beta value from Nalls et al.,  2019. See META5_GRS_chr_bp.txt or META5_GRS_RSid.txt depending on your format)
+**SCORE file** containing  the 90 risk loci (variant identifier, A1, Beta value from Nalls et al.,  2019.
+
+See META5_GRS_chr_bp.txt or META5_GRS_RSid.txt depending on your format)
 
 This tutorial is written in R, and these are the packages you will need to install/load 
 ```R
