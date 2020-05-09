@@ -4,9 +4,51 @@
 
 * Created by: GP2 Training and Networking
 
-## Introduction
+## Table of Contents
+
+#### [0. Getting Started](#0)
+
+#### [1. GRS versus disease status](#1)
+
+#### [2. GRS versus age at onset](#2)
+
+#### [3. Data visualization: Violin Plots](#3)
+
+#### [4. Data visualization: Quantile plots](#4)
+
+#### [5. ROC calculation ](#5)
+
+#### [6. Data Visualization: ROH plots](#6)
+
+#### [7. Data Visualization: Density plots](#7)
+
+---
+<a id="0"></a>
+## 0. Getting Started
 
 Genetic risk scores (AKA: polygenic scores, polygenic risk scores, or genome-wide scores) is a summary measure of a set of risk-associated genetic variants and can be easily calculated using PLINK
+
+This tutorial is written in R, and these are the packages you will need to install/load 
+```R
+# Download the necessary packages 
+if (!require(tidyverse)) install.packages('tidyr')
+if (!require(data.table)) install.packages('data.table')
+if (!require(dplyr)) install.packages('dplyr')
+if (!require(plyr)) install.packages('plyr')
+if (!require(ggplot2)) install.packages('ggplot2')
+
+# Load the necessary packages 
+library(tidyr)
+library(data.table)
+library(dplyr)
+library(plyr)
+library(ggplot2)
+```
+Other programs you will need are:
+- PLINK v1.9
+
+---
+<a id="1"></a>
 
 ## GRS versus disease status (Nalls et al., 2019)
 
@@ -56,6 +98,8 @@ data$zSCORE <- (data$SCORE - meanControls)/sdControls
 grsTests <- glm(CASE ~ zSCORE + SEX + PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + CONSENSUS_AGE, family="binomial", data = data)
 summary(grsTests)
 ```
+---
+<a id="2"></a>
 
 ## GRS versus age at onset (Blauwendraat et al., 2019)
 
@@ -69,10 +113,10 @@ cases$zSCORE <- (cases$SCORE - meanPop)/sdPop
 grsTests <- lm(AGE_onset ~ zSCORE + SEX + PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10, data = cases)
 summary(grsTests)
 ```
+---
+<a id="3"></a>
 
-## Data visualization
-
-### Violin plots
+## Data visualization - Violin plots
 
 ```
 data$PHENO[data$PHENO ==1] <- "Controls"
@@ -85,8 +129,10 @@ p2 + scale_fill_manual(values=c("lightblue", "orange")) + theme_bw() + ylab("PD 
 ggsave("PD_GRS.jpeg", dpi = 600, units = "in", height = 6, width = 6)
 
 ```
+---
+<a id="4"></a>
 
-### Quantile plots
+## Data visualization -  Quantile plots
 
 * Make quantiles
 
@@ -123,6 +169,8 @@ to_plot$high <- to_plot$BETA + (1.96*to_plot$SE)
 plotted <- ggplot(to_plot, aes(QUANTILE, BETA)) + geom_pointrange(aes(ymin = low, ymax = high))
 ggsave(plot = plotted, filename = "plotQuantile.png", width = 4, height = 4, units = "in", dpi = 300)
 ```
+---
+<a id="5"></a>
 
 ### ROC calculation
 
@@ -144,8 +192,10 @@ bestModel <- glm(PHENO ~ SCORE, data = data, family = 'binomial')
 data$predicted <- predict(bestModel, data)
 data$probDisease <- predict(bestModel, data, type = "prob")[2]
 ```
+---
+<a id="6"></a>
 
-* Make ROC plots
+### Data visualization - ROC plots
 
 ```
 overlayedRocs <- ggplot(data, aes(d = PHENO, m = probDisease)) + geom_roc(labels = FALSE) + geom_rocci() + style_roc(theme = theme_gray) + theme_bw() + scale_fill_brewer(palette="Spectral")
@@ -159,10 +209,15 @@ confMat <- confusionMatrix(data = as.factor(trained$predicted), reference = as.f
 confMat
 ```
 
-### Density plots
+---
+<a id="7"></a>
+
+### Data visualization - Density plots
 
 ```
 densPlot <- ggplot(data, aes(probDisease, fill = PHENO, color = PHENO)) + geom_density(alpha = 0.5) + theme_bw()
 ggsave(plot = densPlot, filename = "plotDensity.png", width = 8, height = 5, units = "in", dpi = 300)
 
 ```
+---
+<a id="8"></a>
