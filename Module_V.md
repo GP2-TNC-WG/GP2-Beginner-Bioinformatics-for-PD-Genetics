@@ -21,32 +21,32 @@
 
 Files that you will need:
 
-**Variant calling format (VCF)** that you would like to annotate
+- **Variant calling format (VCF)** that you would like to annotate
 
-**ANNOVAR resources**
+- **ANNOVAR resources**
 
-### Set up your directory ..
+#### Set up your directory ..
 
 ```
 cd /data/LNG/saraB/ANNO/
 ```
-### Make a folder to store outputs ..
+#### Make a folder to store outputs ..
 
 ```
 mkdir ANNOVAR_output
 ```
-### Download ANNOVAR
+#### Download ANNOVAR
 
 ```
 http://download.openbioinformatics.org/cgi-bin/annovar_download.cgi
 ```
 
-### Uncompress ANNOVAR
+#### Uncompress ANNOVAR
 ```
 tar xvfz annovar.latest.tar.gz
 ```
 
-### Download resources needed to perform annotation
+#### Download resources needed to perform annotation
 ```
 annotate_variation.pl -buildver hg38 -downdb -webfrom annovar refGene humandb/
 annotate_variation.pl -buildver hg38 -downdb -webfrom annovar exac03 humandb/ 
@@ -56,7 +56,7 @@ annotate_variation.pl -buildver hg38 -downdb -webfrom annovar dbnsfp30a humandb/
 ---
 <a id="1"></a>
 
-ANNOVAR is an efficient tool that uses updated information to functionally annotate genetic variants detected from different genomes (eg, human genome in versions hg18, hg19, hg38 as well as other species such as mouse, yeast, fly, ecc.).
+**ANNOVAR** is an efficient tool that uses updated information to functionally annotate genetic variants detected from different genomes (eg, human genome in versions hg18, hg19, hg38 as well as other species such as mouse, yeast, fly, ecc.).
 This package can make the following annotations:
 
 **Annotation at the gene level**
@@ -90,11 +90,11 @@ AMP-PD WGS data has been aligned with the human genome construct version GRCh38.
 
 The table_annovar.pl argument is a command used to annotate your input and generate a tab-delimited output that contains representative columns for each of the annotations.
 
-### Specify directory and output name
+#### Specify directory and output name
 ```
 -out /data/LNG/saraB/ANNO/ANNOVAR_output/FILTERED.ataxia_chr1.WES \
 ```
-### Specify type of annotation and databases to be used
+#### Specify type of annotation and databases to be used
 ```
 -remove -protocol refGene,ensGene,ljb26_all,gnomad211_genome,exac03,avsnp147,dbnsfp30a -operation g,g,f,f,f,f,f -nastring . -csvout
 ```
@@ -104,7 +104,7 @@ The protocols can be "g" that indicates "annotation at the level of the gene" or
 The -nastring argument will add a "." for those variants for which there is no information.
 The -csvout argument will generate an output in csv format easily readable by excel.
 
-### Annotate splicing variants
+#### Annotate splicing variants
 ```
 -arg '-splicing 15',,, \
 ```
