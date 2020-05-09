@@ -6,11 +6,13 @@
 
 #### [0. Getting Started](#0)
 
-#### [1. VCF file conversion](#1)
+#### [1. Background](#1)
 
-#### [2. Annotation](#2)
+#### [2. VCF file conversion](#2)
 
-#### [3. Output explanation](#3)
+#### [3. Annotation](#3)
+
+#### [4. Output explanation](#3)
 
 ---
 <a id="0"></a>
@@ -22,21 +24,6 @@ Files that you will need:
 **Variant calling format (VCF)** that you would like to annotate
 
 **ANNOVAR resources**
-
-ANNOVAR is an efficient tool that uses updated information to functionally annotate genetic variants detected from different genomes (eg, human genome in versions hg18, hg19, hg38 as well as other species such as mouse, yeast, fly, ecc.).
-This package can make the following annotations:
-
-**Annotation at the gene level**
-
-It allows identifying if a SNP or structural variant (eg CNV) causes changes at the protein level and which amino acids are affected. Users can use independent data sets for nominal genes (RefSeq, UCSC, ENSEMBL, GENCODE).
-
-**Annotation at the region level**
-
-It allows identifying variants in specific regions of the genome (eg regions conserved among 44 species, regions that encode for transcription factors, loci found from GWAS, or any other annotation based on genomic intervals).
-
-**Annotation based on a specific filter**
-
-It allows identifying variants documented in different databases (eg, whether or not a certain variant is reported in dbSNP, what is the allele frequency in 1000 genomes or ExAC, as well as calculating the scores from SIFT / PolyPhen / LRT / MutationTaster / MutationAssessor / FATHMM / MetaSVM / MetaLR, identify intergenic variants using GERP ++ score <2, among others).
 
 ### Set up your directory ..
 
@@ -69,6 +56,23 @@ annotate_variation.pl -buildver hg38 -downdb -webfrom annovar dbnsfp30a humandb/
 ---
 <a id="1"></a>
 
+ANNOVAR is an efficient tool that uses updated information to functionally annotate genetic variants detected from different genomes (eg, human genome in versions hg18, hg19, hg38 as well as other species such as mouse, yeast, fly, ecc.).
+This package can make the following annotations:
+
+**Annotation at the gene level**
+
+It allows identifying if a SNP or structural variant (eg CNV) causes changes at the protein level and which amino acids are affected. Users can use independent data sets for nominal genes (RefSeq, UCSC, ENSEMBL, GENCODE).
+
+**Annotation at the region level**
+
+It allows identifying variants in specific regions of the genome (eg regions conserved among 44 species, regions that encode for transcription factors, loci found from GWAS, or any other annotation based on genomic intervals).
+
+**Annotation based on a specific filter**
+
+It allows identifying variants documented in different databases (eg, whether or not a certain variant is reported in dbSNP, what is the allele frequency in 1000 genomes or ExAC, as well as calculating the scores from SIFT / PolyPhen / LRT / MutationTaster / MutationAssessor / FATHMM / MetaSVM / MetaLR, identify intergenic variants using GERP ++ score <2, among others).
+
+<a id="2"></a>
+
 ## 1. Convert *.VCF into *.avinput
 ```
 convert2annovar.pl -format vcf4 /data/LNG/saraB/ANNO/ANNOVAR_input/FILTERED.ataxia_chr1.WES.vcf > /data/LNG/saraB/ANNO/ANNOVAR_input/FILTERED.ataxia_chr1.WES.avinput
@@ -76,7 +80,7 @@ convert2annovar.pl -format vcf4 /data/LNG/saraB/ANNO/ANNOVAR_input/FILTERED.atax
 VCF is the gold standard format that most researchers use. Normally we start from a * .VCF file and make it a more manageable * .avinput input.
 
 ---
-<a id="2"></a>
+<a id="3"></a>
 
 ## 2. Annotation
 ```
@@ -105,7 +109,7 @@ The -csvout argument will generate an output in csv format easily readable by ex
 -arg '-splicing 15',,, \
 ```
 ---
-<a id="3"></a>
+<a id="4"></a>
 
 ## 3. Output explanation
 The output file contains multiple columns.
@@ -114,4 +118,4 @@ The columns Func.refGene, Gene.refGene, GeneDetail.refGene, ExonicFunc.refGene, 
 The ExAC * columns represent the allele frequency in different sub-populations within the Exome Aggregation Consortium, while avsnp147 refers to the rs ID of each variant in version 147 of dbSNP.
 The remaining columns contain pathogenicity predictors for non-synonymous variants using the SIFT tools, PolyPhen2 HDIV scores, PolyPhen2 HVAR scores, LRT scores, MutationTaster scores, MutationAssessor score, FATHMM scores, GERP ++ scores, CADD scores, DANN scores, PhyloP scores and SiPhy scores.
 
-<a id="4"></a>
+<a id="5"></a>
