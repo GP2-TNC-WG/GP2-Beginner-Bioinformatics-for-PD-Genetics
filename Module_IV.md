@@ -18,7 +18,7 @@
 
 #### [5. ROC calculation ](#5)
 
-#### [6. Data Visualization: ROH plots](#6)
+#### [6. Data Visualization: ROC plots](#6)
 
 #### [7. Data Visualization: Density plots](#7)
 
@@ -63,16 +63,6 @@ Where:
 test = standard binary file prefix (will point to .bed, .bim, and .fam files)
 GRS_PD_test.profile = whatever you want it to be, the output will have the extension .profile
 META5_GRS_chr_bp.txt = file with variant-name, allele and score-value
-```
-
-### Load R libraries
-
-```
-library(data.table)
-library(dplyr)
-library(tidyr)
-library(plyr)
-library(ggplot2)
 ```
 
 ### Read PLINK output, merge with covariate file and recode CASE (1) and CONTROL (0)
