@@ -32,28 +32,28 @@ It allows identifying variants in specific regions of the genome (eg regions con
 
 It allows identifying variants documented in different databases (eg, whether or not a certain variant is reported in dbSNP, what is the allele frequency in 1000 genomes or ExAC, as well as calculating the scores from SIFT / PolyPhen / LRT / MutationTaster / MutationAssessor / FATHMM / MetaSVM / MetaLR, identify intergenic variants using GERP ++ score <2, among others).
 
-## Set up your directory ..
+### Set up your directory ..
 
 ```
 cd /data/LNG/saraB/ANNO/
 ```
-## Make a folder to store outputs ..
+### Make a folder to store outputs ..
 
 ```
 mkdir ANNOVAR_output
 ```
-## Download ANNOVAR
+### Download ANNOVAR
 
 ```
 http://download.openbioinformatics.org/cgi-bin/annovar_download.cgi
 ```
 
-## Uncompress ANNOVAR
+### Uncompress ANNOVAR
 ```
 tar xvfz annovar.latest.tar.gz
 ```
 
-## Download resources needed to perform annotation
+### Download resources needed to perform annotation
 ```
 annotate_variation.pl -buildver hg38 -downdb -webfrom annovar refGene humandb/
 annotate_variation.pl -buildver hg38 -downdb -webfrom annovar exac03 humandb/ 
@@ -80,11 +80,11 @@ AMP-PD WGS data has been aligned with the human genome construct version GRCh38.
 
 The table_annovar.pl argument is a command used to annotate your input and generate a tab-delimited output that contains representative columns for each of the annotations.
 
-## Specify directory and output name
+### Specify directory and output name
 ```
 -out /data/LNG/saraB/ANNO/ANNOVAR_output/FILTERED.ataxia_chr1.WES \
 ```
-## Specify type of annotation and databases to be used
+### Specify type of annotation and databases to be used
 ```
 -remove -protocol refGene,ensGene,ljb26_all,gnomad211_genome,exac03,avsnp147,dbnsfp30a -operation g,g,f,f,f,f,f -nastring . -csvout
 ```
@@ -94,7 +94,7 @@ The protocols can be "g" that indicates "annotation at the level of the gene" or
 The -nastring argument will add a "." for those variants for which there is no information.
 The -csvout argument will generate an output in csv format easily readable by excel.
 
-## Annotate splicing variants
+### Annotate splicing variants
 ```
 -arg '-splicing 15',,, \
 ```
