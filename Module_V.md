@@ -1,6 +1,17 @@
 ## Module V. Variant annotation and prioritization using whole exome and whole genome sequencing
 	
-* Created by: GP2 Training and Networking	
+* Created by: GP2 Training and Networking
+
+## Table of Contents
+
+#### [0. Getting Started](#0)
+
+#### [1. VCF file conversion](#1)
+
+#### [2. Annotation](#2)
+
+#### [3. Output explanation](#3)
+
   
 ## Introduction
 
