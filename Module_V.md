@@ -15,6 +15,8 @@
 ---
 <a id="0"></a>
 
+## 0. Getting started
+
 ANNOVAR is an efficient tool that uses updated information to functionally annotate genetic variants detected from different genomes (eg, human genome in versions hg18, hg19, hg38 as well as other species such as mouse, yeast, fly, ecc.).
 This package can make the following annotations:
 
@@ -61,7 +63,7 @@ annotate_variation.pl -buildver hg38 -downdb -webfrom annovar dbnsfp30a humandb/
 ---
 <a id="1"></a>
 
-## Convert *.VCF into *.avinput
+## 1. Convert *.VCF into *.avinput
 ```
 convert2annovar.pl -format vcf4 /data/LNG/saraB/ANNO/ANNOVAR_input/FILTERED.ataxia_chr1.WES.vcf > /data/LNG/saraB/ANNO/ANNOVAR_input/FILTERED.ataxia_chr1.WES.avinput
 ```
@@ -70,7 +72,7 @@ VCF is the gold standard format that most researchers use. Normally we start fro
 ---
 <a id="2"></a>
 
-## Annotate avinput file taking into account hg38 positions
+## 2. Annotation
 ```
 table_annovar.pl /data/LNG/saraB/ANNO/ANNOVAR_input/FILTERED.ataxia_chr1.WES.avinput ANNOVAR_DATA/hg38 -buildver hg38 \
 ```
@@ -99,7 +101,7 @@ The -csvout argument will generate an output in csv format easily readable by ex
 ---
 <a id="3"></a>
 
-## Output explanation
+## 3. Output explanation
 The output file contains multiple columns.
 Each of the columns corresponds to each of the protocols specified in your script.
 The columns Func.refGene, Gene.refGene, GeneDetail.refGene, ExonicFunc.refGene, AAChange.refGene contain annotations on how mutations affect the structure of the gene and protein.
