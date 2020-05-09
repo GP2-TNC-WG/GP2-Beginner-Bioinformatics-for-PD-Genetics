@@ -18,15 +18,15 @@
 ANNOVAR is an efficient tool that uses updated information to functionally annotate genetic variants detected from different genomes (eg, human genome in versions hg18, hg19, hg38 as well as other species such as mouse, yeast, fly, ecc.).
 This package can make the following annotations:
 
-** Annotation at the gene level: **
+**Annotation at the gene level**
 
 It allows identifying if a SNP or structural variant (eg CNV) causes changes at the protein level and which amino acids are affected. Users can use independent data sets for nominal genes (RefSeq, UCSC, ENSEMBL, GENCODE).
 
-** Annotation at the region level: **
+**Annotation at the region level**
 
 It allows identifying variants in specific regions of the genome (eg regions conserved among 44 species, regions that encode for transcription factors, loci found from GWAS, or any other annotation based on genomic intervals).
 
-** Annotation based on a specific filter: **
+**Annotation based on a specific filter**
 
 It allows identifying variants documented in different databases (eg, whether or not a certain variant is reported in dbSNP, what is the allele frequency in 1000 genomes or ExAC, as well as calculating the scores from SIFT / PolyPhen / LRT / MutationTaster / MutationAssessor / FATHMM / MetaSVM / MetaLR, identify intergenic variants using GERP ++ score <2, among others).
 
@@ -105,3 +105,5 @@ Each of the columns corresponds to each of the protocols specified in your scrip
 The columns Func.refGene, Gene.refGene, GeneDetail.refGene, ExonicFunc.refGene, AAChange.refGene contain annotations on how mutations affect the structure of the gene and protein.
 The ExAC * columns represent the allele frequency in different sub-populations within the Exome Aggregation Consortium, while avsnp147 refers to the rs ID of each variant in version 147 of dbSNP.
 The remaining columns contain pathogenicity predictors for non-synonymous variants using the SIFT tools, PolyPhen2 HDIV scores, PolyPhen2 HVAR scores, LRT scores, MutationTaster scores, MutationAssessor score, FATHMM scores, GERP ++ scores, CADD scores, DANN scores, PhyloP scores and SiPhy scores.
+
+<a id="4"></a>
