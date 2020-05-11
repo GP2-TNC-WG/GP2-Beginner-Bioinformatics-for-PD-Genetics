@@ -7,10 +7,9 @@
 #### [0. Getting Started](#0)
 #### [1. Post-QC data formatting](#1)
 #### [1a. Check data with imputation reference SNP list](#2)
-#### [1b. Convert to VCF](#3)
-#### [1c. Sort and compress VCF](#4)
-#### [1d. CheckVCF.py (optional)](#5)
-#### [2. Generating Softcall + Hardcall](#6)
+#### [1b. Convert to VCF, sort and compress](#3)
+#### [1c. CheckVCF.py (optional)](#4)
+#### [2. Generating Softcall + Hardcall](#5)
 
 ---
 
@@ -232,7 +231,7 @@ sh ../FILTERED_demofile/Run-plink.sh
 Now we should see `FILTERED.test-updated-chr` for each chromosomes.
 
 <a id="3"></a>
-### 1b. Convert to VCF
+### 1b. Convert to VCF, sort, and compress
 
 When converting to VCF, we will split this to different chromosomes as required by Michigan Imputation Server (it also makes files smaller and easier to handle)
 
@@ -244,10 +243,7 @@ for chnum in {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23};
 done
 ```
 
-<a id="4"></a>
-### 1c. Sort and compress VCF
-
-MIS also requires bgzip compression.
+MIS also requires bgzip compression. BCFTools can compress and sort the VCF with one command.
 
 
 ```bash
@@ -348,8 +344,8 @@ done
     Done
 
 
- <a id="5"></a>
-### 1d. CheckVCF.py (optional)
+ <a id="4"></a>
+### 1c. CheckVCF.py (optional)
 
 Found here: https://github.com/zhanxw/checkVCF
 
@@ -746,7 +742,7 @@ Looks like everything worked out. Let's move the results to somewhere easier to 
 mv *.vcf.gz ../postformat/
 ```
 
- <a id="6"></a>
+ <a id="5"></a>
 ## 2. Generating Softcall + hardcall binaries
 
 After Michigan Imputation Server, we have our imputed data, but not imputed sites are equal... We need to determine (arbitrary) cutoff points for both minor allele frequency and Rsq.
