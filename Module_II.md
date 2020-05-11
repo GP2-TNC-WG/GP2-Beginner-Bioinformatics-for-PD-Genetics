@@ -17,7 +17,7 @@
 <a id="0"></a>
 ## 0. Getting Started
 
-Welcome to module II of GP2 Bioinformatics Course. Please note that this markdown notebook is designed to be followed along with the video lesson.
+Welcome to the Module II of GP2 Bioinformatics Course. Please note that this markdown notebook is designed to be followed along with the video lesson.
 
 Before you begin, please make sure that the following programs and scripts are installed or downloaded:
 
@@ -35,7 +35,7 @@ Before you begin, please make sure that the following programs and scripts are i
 * HRC Panel (HRC.r1-1.GRCh37.wgs.mac5.sites.tab) http://www.haplotype-reference-consortium.org/site 
 * CheckVCF (optional) https://github.com/zhanxw/checkVCF
 
-As well as quality controlled genotype data in plink binary. For further information on quality controlled plink binary file, please check out Module I.
+As well as quality controlled genotype data in plink binary. For further information on quality control of genotype data, please check out Module I.
 
 Our workspace folder structure is as follows:
 
