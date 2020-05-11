@@ -1,12 +1,27 @@
 ## Module II.  Imputation
 
-### Information
-- **Created by:** GP2 Training and Networking 
+#### Information
+* Created by: GP2 Training and Networking
 
-YOU NEED:
+## Table of Contents
+#### [0. Getting Started](#0)
+#### [1. Post-QC data formatting](#1)
+#### [1a. Check data with imputation reference SNP list](#2)
+#### [1b. Convert to VCF](#3)
+#### [1c. Sort and compress VCF](#4)
+#### [1d. CheckVCF.py (optional)](#5)
+#### [2. Generating Softcall + Hardcall](#6)
 
-*Software*
+---
 
+<a id="0"></a>
+## 0. Getting Started
+
+Welcome to module II of GP2 Bioinformatics Course. Please note that this markdown notebook is designed to be followed along with the video lesson.
+
+Before you begin, please make sure that the following programs and scripts are installed or downloaded:
+
+*Programs*
 * Bash shell
 * PLINK 1.9
 * BCFTools
@@ -20,23 +35,9 @@ YOU NEED:
 * HRC Panel (HRC.r1-1.GRCh37.wgs.mac5.sites.tab) http://www.haplotype-reference-consortium.org/site 
 * CheckVCF (optional) https://github.com/zhanxw/checkVCF
 
-### Table of Contents
-#### [0. Workspace outline/Introduction](#0)
-#### [1. Post-QC data formatting](#1)
-#### [1a. Check data with imputation reference SNP list](#2)
-#### [1b. Convert to VCF](#3)
-#### [1c. Sort and compress VCF](#4)
-#### [1d. CheckVCF.py (optional)](#5)
-#### [2. Generating Softcall + Hardcall](#6)
+As well as quality controlled genotype data in plink binary. For further information on quality controlled plink binary file, please check out Module I.
 
----
-
-<a id="0"></a>
-# 0. Workspace outline/Introduction
-
-Welcome to module II of GP2 Bioinformatics Course. Please note that this markdown notebook is designed to be followed along with the video lesson.
-
-Our folder structure is as follows:
+Our workspace folder structure is as follows:
 
     GP2_imputation_module
     ├── FILTERED_demofile
@@ -56,7 +57,7 @@ Your folder or workspace does not have to look like this. It's just given to you
 Our starting input data are PLINK binary files `FILTERED_demofile/FILTERED.test{.bed,bim,fam}`.
 
 <a id="1"></a>
-# 1. Post-QC data formatting
+## 1. Post-QC data formatting
 
 This should start with data that's already been quality controlled as described by module 1, including but not limited to population structure and Hardy-Weinberg.
 
@@ -68,7 +69,7 @@ This should start with data that's already been quality controlled as described 
 * CheckVCF.py for final QC (optional)
 
 <a id="2"></a>
-# 1a. Check data with imputation reference SNP list
+### 1a. Check data with imputation reference SNP list
 
 Using William Rayner's tool: https://www.well.ox.ac.uk/~wrayner/tools/
 
@@ -231,7 +232,7 @@ sh ../FILTERED_demofile/Run-plink.sh
 Now we should see `FILTERED.test-updated-chr` for each chromosomes.
 
 <a id="3"></a>
-# 1b. Convert to VCF
+### 1b. Convert to VCF
 
 When converting to VCF, we will split this to different chromosomes as required by Michigan Imputation Server (it also makes files smaller and easier to handle)
 
@@ -244,7 +245,7 @@ done
 ```
 
 <a id="4"></a>
-# 1c. Sort and compress VCF
+### 1c. Sort and compress VCF
 
 MIS also requires bgzip compression.
 
@@ -348,7 +349,7 @@ done
 
 
  <a id="5"></a>
-# 1d. CheckVCF.py (optional)
+### 1d. CheckVCF.py (optional)
 
 Found here: https://github.com/zhanxw/checkVCF
 
@@ -746,7 +747,7 @@ mv *.vcf.gz ../postformat/
 ```
 
  <a id="6"></a>
-# 2. Generating Softcall + hardcall binaries
+## 2. Generating Softcall + hardcall binaries
 
 After Michigan Imputation Server, we have our imputed data, but not imputed sites are equal... We need to determine (arbitrary) cutoff points for both minor allele frequency and Rsq.
 
@@ -755,7 +756,7 @@ Softcall: rsq > 0.3
 Hardcall: rsq > 0.8
 
 ---
-## Optional Step: what sites pass our MAF and Rsq cutoffs?
+### Optional Step: what sites pass our MAF and Rsq cutoffs?
 
 Copy and save the following as `filter_variants_maf_r2_updated.R`
 
