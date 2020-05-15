@@ -70,7 +70,7 @@ Other programs you will need are:
 
 ```
 cd Desktop/TEST/
-./plink --bfile test --score META5_GRS_chr_bp.txt --out GRS_PD_test.profile
+./plink --bfile IMPUTED.test --score META5_GRS_chr_bp.txt --out GRS_PD_test.profile
 ```
 
 Where:
