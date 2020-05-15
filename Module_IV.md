@@ -111,7 +111,7 @@ summary(grsTests)
 ---
 <a id="2"></a>
 
-## GRS versus age at onset (Blauwendraat et al., 2019)
+## GRS versus age at onset
 
 ### Subset ONLY cases perform linear regression adjusted by covariates
 
