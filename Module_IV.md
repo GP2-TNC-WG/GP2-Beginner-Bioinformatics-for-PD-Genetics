@@ -184,7 +184,7 @@ ggsave(plot = plotted, filename = "plotQuantile.png", width = 4, height = 4, uni
 packageList <- c("caret","ggplot2","data.table","plotROC")
 lapply(packageList, library, character.only = TRUE)
 ```
-* Build your best model 
+* Run regression model 
 
 ```
 bestModel <- glm(PHENO ~ SCORE, data = data, family = 'binomial')
