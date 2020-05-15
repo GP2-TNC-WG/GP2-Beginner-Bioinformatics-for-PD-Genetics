@@ -50,6 +50,8 @@ if (!require(data.table)) install.packages('data.table')
 if (!require(dplyr)) install.packages('dplyr')
 if (!require(plyr)) install.packages('plyr')
 if (!require(ggplot2)) install.packages('ggplot2')
+if (!require(caret)) install.packages('caret')
+
 
 # Load the necessary packages 
 library(tidyr)
@@ -57,6 +59,8 @@ library(data.table)
 library(dplyr)
 library(plyr)
 library(ggplot2)
+library(plotROC)
+library(caret)
 ```
 Other programs you will need are:
 - PLINK v1.9
@@ -195,8 +199,9 @@ Model <- glm(CASE ~ SCORE, data = data, family = 'binomial')
 * Make predictions
 
 ```
-data$predicted <- predict(Model, data)
-data$probDisease <- predict(Model, data, type = "prob")[2]
+data$probDisease <- predict(Model, data, type = c("response"))
+data$predicted <- ifelse(data$probDisease > 0.5, "DISEASE", "CONTROL")
+data$reported <- ifelse(data$CASE == 1, "DISEASE","CONTROL")
 ```
 ---
 <a id="6"></a>
@@ -204,14 +209,15 @@ data$probDisease <- predict(Model, data, type = "prob")[2]
 ### Data visualization - ROC plots
 
 ```
-overlayedRocs <- ggplot(data, aes(d = PHENO.x, m = probDisease)) + geom_roc(labels = FALSE) + geom_rocci() + style_roc(theme = theme_gray) + theme_bw() + scale_fill_brewer(palette="Spectral")
+overlayedRocs <- ggplot(data, aes(d = CASE, m = probDisease)) + geom_roc(labels = FALSE) + geom_rocci() + style_roc(theme = theme_gray) + theme_bw() + scale_fill_brewer(palette="Spectral")
 ggsave(plot = overlayedRocs, filename = "plotRoc.png", width = 8, height = 5, units = "in", dpi = 300)
+
 ```
 
 * Show the confusion matrix (specificity and sensitivity)
 
 ```
-confMat <- confusionMatrix(data = as.factor(trained$predicted), reference = as.factor(trained$PHENO.x), positive = "DISEASE")
+confMat <- confusionMatrix(data = as.factor(data$predicted), reference = as.factor(data$reported), positive = "DISEASE")
 confMat
 ```
 
@@ -221,7 +227,7 @@ confMat
 ### Data visualization - Density plots
 
 ```
-densPlot <- ggplot(data, aes(probDisease, fill = PHENO.x, color = PHENO.x)) + geom_density(alpha = 0.5) + theme_bw()
+densPlot <- ggplot(data, aes(probDisease, fill = PHENO, color = PHENO)) + geom_density(alpha = 0.5) + theme_bw()
 ggsave(plot = densPlot, filename = "plotDensity.png", width = 8, height = 5, units = "in", dpi = 300)
 
 ```
