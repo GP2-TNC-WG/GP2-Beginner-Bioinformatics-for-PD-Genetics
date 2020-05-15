@@ -69,7 +69,8 @@ Other programs you will need are:
 ### Calculate Score (profile) in PLINK
 
 ```
-plink --bfile test --score META5_GRS_chr_bp.txt --out GRS_PD_test.profile
+cd Desktop/TEST/
+./plink --bfile test --score META5_GRS_chr_bp.txt --out GRS_PD_test.profile
 ```
 
 Where:
@@ -82,6 +83,7 @@ META5_GRS_chr_bp.txt = file with variant-name, allele and score-value
 ### Read PLINK output, merge with covariate file and recode CASE (1) and CONTROL (0)
 
 ```
+setwd("~/Desktop/TEST/")
 temp_data <- read.table("GRS_PD_test.profile", header = T) 
 temp_covs <- read.table("test_covs.txt", header = T)
 data <- merge(temp_data, temp_covs, by = "FID")
