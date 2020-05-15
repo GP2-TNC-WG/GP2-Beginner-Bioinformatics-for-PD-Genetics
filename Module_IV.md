@@ -36,7 +36,7 @@ Files that you will need:
 
 **Covariates File** containing the covariates you would like to correct by
 
-- This file at a minimum includes sample information (such as ID, SEX, PHENO) and principle components
+- This file at a minimum includes sample information (such as ID, SEX, PHENO) and principal components
 
 **SCORE file** containing  the 90 risk loci (variant identifier, A1, Beta value from Nalls et al.,  2019.)
 
