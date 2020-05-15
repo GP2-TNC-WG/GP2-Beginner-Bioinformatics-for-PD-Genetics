@@ -101,7 +101,7 @@ data$zSCORE <- (data$SCORE - meanControls)/sdControls
 ### Perform logistic regression adjusted by covariates
 
 ```
-grsTests <- glm(CASE ~ zSCORE + SEX + PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + CONSENSUS_AGE, family="binomial", data = data)
+grsTests <- glm(CASE ~ zSCORE + SEX + PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10 + AAO, family="binomial", data = data)
 summary(grsTests)
 ```
 ---
@@ -116,7 +116,7 @@ cases <- subset(data, PHENO == 1)
 meanPop <- mean(cases$SCORE)
 sdPop <- sd(cases$SCORE)
 cases$zSCORE <- (cases$SCORE - meanPop)/sdPop
-grsTests <- lm(AGE_onset ~ zSCORE + SEX + PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10, data = cases)
+grsTests <- lm(AAO ~ zSCORE + SEX + PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10, data = cases)
 summary(grsTests)
 ```
 ---
@@ -151,7 +151,7 @@ data$quantiles <- 1
 data$quantiles[data$quantile2 == 1] <- 2
 data$quantiles[data$quantile3 == 1] <- 3
 data$quantiles[data$quantile4 == 1] <- 4
-quintileTests <- glm(CASE ~ as.factor(data$quantiles) + as.factor(data$DATASET) + AGE + SEX_COV + PC1 + PC2 + PC3 + PC4 + PC5, family="binomial", data = data)
+quintileTests <- glm(CASE ~ as.factor(data$quantiles) + as.factor(data$DATASET) + AAO + SEX + PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10, family="binomial", data = data)
 
 ```
 * Summarize the regression and export a table
