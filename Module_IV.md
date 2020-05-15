@@ -87,7 +87,7 @@ setwd("~/Desktop/TEST/")
 temp_data <- read.table("GRS_PD_test.profile", header = T) 
 temp_covs <- read.table("test_covs.txt", header = T)
 data <- merge(temp_data, temp_covs, by = "FID")
-data$CASE <- data$PHENO - 1
+data$CASE <- data$PHENO.x - 1
 ```
 
 ### Normalize Score to Z-Score 
@@ -112,7 +112,7 @@ summary(grsTests)
 ### Subset ONLY cases perform linear regression adjusted by covariates
 
 ```
-cases <- subset(data, PHENO == 1)
+cases <- subset(data, PHENO.x == 1)
 meanPop <- mean(cases$SCORE)
 sdPop <- sd(cases$SCORE)
 cases$zSCORE <- (cases$SCORE - meanPop)/sdPop
@@ -125,10 +125,10 @@ summary(grsTests)
 ## Data visualization - Violin plots
 
 ```
-data$PHENO[data$PHENO ==1] <- "Controls"
-data$PHENO[data$PHENO ==2] <- "PD"
+data$PHENO[data$PHENO.x ==1] <- "Controls"
+data$PHENO[data$PHENO.x ==2] <- "PD"
 
-p <- ggplot(all_data, aes(x= reorder(as.factor(PHENO), zSCORE), y=zSCORE, fill=as.factor(PHENO))) +
+p <- ggplot(data, aes(x= reorder(as.factor(PHENO.x), zSCORE), y=zSCORE, fill=as.factor(PHENO.x))) +
   geom_violin(trim=FALSE)
 p2 <- p+geom_boxplot(width=0.4, fill="white" ) + theme_minimal()
 p2 + scale_fill_manual(values=c("lightblue", "orange")) + theme_bw() + ylab("PD GRS (Z-transformed)") +xlab("") + theme(legend.position = "none")
@@ -151,7 +151,7 @@ data$quantiles <- 1
 data$quantiles[data$quantile2 == 1] <- 2
 data$quantiles[data$quantile3 == 1] <- 3
 data$quantiles[data$quantile4 == 1] <- 4
-quintileTests <- glm(CASE ~ as.factor(data$quantiles) + as.factor(data$DATASET) + AAO + SEX + PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10, family="binomial", data = data)
+quintileTests <- glm(CASE ~ as.factor(data$quantiles) + AAO + SEX + PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10, family="binomial", data = data)
 
 ```
 * Summarize the regression and export a table
@@ -189,14 +189,14 @@ lapply(packageList, library, character.only = TRUE)
 * Run regression model 
 
 ```
-bestModel <- glm(PHENO ~ SCORE, data = data, family = 'binomial')
+Model <- glm(CASE ~ SCORE, data = data, family = 'binomial')
 ```
 
 * Make predictions
 
 ```
-data$predicted <- predict(bestModel, data)
-data$probDisease <- predict(bestModel, data, type = "prob")[2]
+data$predicted <- predict(Model, data)
+data$probDisease <- predict(Model, data, type = "prob")[2]
 ```
 ---
 <a id="6"></a>
@@ -221,7 +221,7 @@ confMat
 ### Data visualization - Density plots
 
 ```
-densPlot <- ggplot(data, aes(probDisease, fill = PHENO, color = PHENO)) + geom_density(alpha = 0.5) + theme_bw()
+densPlot <- ggplot(data, aes(probDisease, fill = PHENO.x, color = PHENO.x)) + geom_density(alpha = 0.5) + theme_bw()
 ggsave(plot = densPlot, filename = "plotDensity.png", width = 8, height = 5, units = "in", dpi = 300)
 
 ```
