@@ -204,14 +204,14 @@ data$probDisease <- predict(Model, data, type = "prob")[2]
 ### Data visualization - ROC plots
 
 ```
-overlayedRocs <- ggplot(data, aes(d = PHENO, m = probDisease)) + geom_roc(labels = FALSE) + geom_rocci() + style_roc(theme = theme_gray) + theme_bw() + scale_fill_brewer(palette="Spectral")
+overlayedRocs <- ggplot(data, aes(d = PHENO.x, m = probDisease)) + geom_roc(labels = FALSE) + geom_rocci() + style_roc(theme = theme_gray) + theme_bw() + scale_fill_brewer(palette="Spectral")
 ggsave(plot = overlayedRocs, filename = "plotRoc.png", width = 8, height = 5, units = "in", dpi = 300)
 ```
 
 * Show the confusion matrix (specificity and sensitivity)
 
 ```
-confMat <- confusionMatrix(data = as.factor(trained$predicted), reference = as.factor(trained$PHENO), positive = "DISEASE")
+confMat <- confusionMatrix(data = as.factor(trained$predicted), reference = as.factor(trained$PHENO.x), positive = "DISEASE")
 confMat
 ```
 
