@@ -116,7 +116,7 @@ summary(grsTests)
 ### Subset ONLY cases perform linear regression adjusted by covariates
 
 ```
-cases <- subset(data, PHENO.x == 1)
+cases <- subset(data, CASE == 1)
 meanPop <- mean(cases$SCORE)
 sdPop <- sd(cases$SCORE)
 cases$zSCORE <- (cases$SCORE - meanPop)/sdPop
@@ -129,10 +129,10 @@ summary(grsTests)
 ## Data visualization - Violin plots
 
 ```
-data$PHENO[data$PHENO.x ==1] <- "Controls"
-data$PHENO[data$PHENO.x ==2] <- "PD"
+data$PHENO[data$CASE ==0] <- "Controls"
+data$PHENO[data$CASE ==1] <- "PD"
 
-p <- ggplot(data, aes(x= reorder(as.factor(PHENO.x), zSCORE), y=zSCORE, fill=as.factor(PHENO.x))) +
+p <- ggplot(data, aes(x= reorder(as.factor(CASE), zSCORE), y=zSCORE, fill=as.factor(CASE))) +
   geom_violin(trim=FALSE)
 p2 <- p+geom_boxplot(width=0.4, fill="white" ) + theme_minimal()
 p2 + scale_fill_manual(values=c("lightblue", "orange")) + theme_bw() + ylab("PD GRS (Z-transformed)") +xlab("") + theme(legend.position = "none")
@@ -227,7 +227,7 @@ confMat
 ### Data visualization - Density plots
 
 ```
-densPlot <- ggplot(data, aes(probDisease, fill = PHENO.x, color = PHENO.x)) + geom_density(alpha = 0.5) + theme_bw()
+densPlot <- ggplot(data, aes(probDisease, fill = CASE, color = CASE)) + geom_density(alpha = 0.5) + theme_bw()
 ggsave(plot = densPlot, filename = "plotDensity.png", width = 8, height = 5, units = "in", dpi = 300)
 
 ```
