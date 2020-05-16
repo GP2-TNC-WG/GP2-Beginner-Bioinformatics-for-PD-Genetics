@@ -129,8 +129,8 @@ summary(grsTests)
 ## Data visualization - Violin plots
 
 ```
-data$PHENO[data$CASE ==0] <- "Controls"
-data$PHENO[data$CASE ==1] <- "PD"
+data$CASE[data$CASE ==0] <- "Controls"
+data$CASE[data$CASE ==1] <- "PD"
 
 p <- ggplot(data, aes(x= reorder(as.factor(CASE), zSCORE), y=zSCORE, fill=as.factor(CASE))) +
   geom_violin(trim=FALSE)
