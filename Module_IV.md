@@ -173,6 +173,7 @@ write.table(summary_stats_sorted, "quantile_table.csv", quote = F, row.names = F
 * Make quantile plot
 
 ```
+data$CASE <- data$PHENO.x - 1
 to_plot <- read.table("quantile_table.csv", header = T, sep = ",")
 to_plot$low <- to_plot$BETA - (1.96*to_plot$SE)
 to_plot$high <- to_plot$BETA + (1.96*to_plot$SE)
