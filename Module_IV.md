@@ -185,12 +185,6 @@ ggsave(plot = plotted, filename = "plotQuantile.png", width = 4, height = 4, uni
 
 ### ROC calculation
 
-* Load additional packages
-
-```
-packageList <- c("caret","ggplot2","data.table","plotROC")
-lapply(packageList, library, character.only = TRUE)
-```
 * Run regression model 
 
 ```
