@@ -57,6 +57,7 @@ perl annotate_variation.pl -buildver hg38 -downdb -webfrom annovar dbnsfp30a hum
 perl annotate_variation.pl -buildver hg38 -downdb -webfrom annovar gnomad211_genome humandb/
 perl annotate_variation.pl -buildver hg38 -downdb -webfrom annovar ljb26_all humandb/
 perl annotate_variation.pl -buildver hg38 -downdb -webfrom annovar clinvar_20140902 humandb/
+
 ```
 ---
 <a id="1"></a>
@@ -82,7 +83,7 @@ It allows identifying variants documented in different databases (eg, whether or
 
 ## 2. Convert *.VCF into *.avinput
 ```
-convert2annovar.pl -format vcf4 TEST.vcf > TEST.avinput
+perl convert2annovar.pl -format vcf4 TEST.vcf > TEST.avinput
 ```
 VCF is the gold standard format that most researchers use. Normally we start from a * .VCF file and make it a more manageable * .avinput input.
 
@@ -91,7 +92,7 @@ VCF is the gold standard format that most researchers use. Normally we start fro
 
 ## 3. Annotation
 ```
-table_annovar.pl TEST.avinput humandb/hg38 -buildver hg38 \
+perl table_annovar.pl TEST.avinput humandb/hg38 -buildver hg38 \
 ```
 AMP-PD WGS data has been aligned with the human genome construct version GRCh38. We must map our variants in the same way.
 
