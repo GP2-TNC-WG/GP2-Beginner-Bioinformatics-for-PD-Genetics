@@ -77,7 +77,7 @@ It allows identifying variants documented in different databases (eg, whether or
 
 ## 2. Convert *.VCF into *.avinput
 ```
-convert2annovar.pl -format vcf4 /data/LNG/saraB/ANNO/ANNOVAR_input/FILTERED.ataxia_chr1.WES.vcf > /data/LNG/saraB/ANNO/ANNOVAR_input/FILTERED.ataxia_chr1.WES.avinput
+convert2annovar.pl -format vcf4 TEST.vcf > TEST.avinput
 ```
 VCF is the gold standard format that most researchers use. Normally we start from a * .VCF file and make it a more manageable * .avinput input.
 
@@ -86,7 +86,7 @@ VCF is the gold standard format that most researchers use. Normally we start fro
 
 ## 3. Annotation
 ```
-table_annovar.pl /data/LNG/saraB/ANNO/ANNOVAR_input/FILTERED.ataxia_chr1.WES.avinput ANNOVAR_DATA/hg38 -buildver hg38 \
+table_annovar.pl TEST.avinput humandb/hg38 -buildver hg38 \
 ```
 AMP-PD WGS data has been aligned with the human genome construct version GRCh38. We must map our variants in the same way.
 
@@ -94,7 +94,7 @@ The table_annovar.pl argument is a command used to annotate your input and gener
 
 #### Specify directory and output name
 ```
--out /data/LNG/saraB/ANNO/ANNOVAR_output/FILTERED.ataxia_chr1.WES \
+-out TEST.WGS \
 ```
 #### Specify type of annotation and databases to be used
 ```
