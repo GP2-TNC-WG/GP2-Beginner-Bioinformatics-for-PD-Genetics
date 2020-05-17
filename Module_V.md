@@ -92,32 +92,17 @@ VCF is the gold standard format that most researchers use. Normally we start fro
 
 ## 3. Annotation
 ```
-perl table_annovar.pl TEST.avinput humandb/hg38 -buildver hg38 \
+table_annovar.pl TEST.vcf humandb/ -buildver hg38 -out TEST.annovar -remove -protocol refGene,ljb26_all,gnomad211_genome,clinvar_20140902 -operation g,f,f,f -nastring . -vcfinput
 ```
-AMP-PD WGS data has been aligned with the human genome construct version GRCh38. We must map our variants in the same way.
+ WGS data usually aligned with the human genome construct version GRCh38. We must map our variants in the same way.
 
 The table_annovar.pl argument is a command used to annotate your input and generate a tab-delimited output that contains representative columns for each of the annotations.
-
-#### Specify directory and output name
-```
--out TEST.WGS \
-```
-#### Specify type of annotation and databases to be used
-```
--remove -protocol refGene,ensGene,ljb26_all,gnomad211_genome,exac03,avsnp147,dbnsfp30a -operation g,g,f,f,f,f,f -nastring . -csvout
-```
 
 The -operation argument tells ANNOVAR what operations to use for each of the protocols.
 The protocols can be "g" that indicates "annotation at the level of the gene" or "f" that means "annotation based on a specific filter", among others.
 The -nastring argument will add a "." for those variants for which there is no information.
 The -csvout argument will generate an output in csv format easily readable by excel.
 
-#### Annotate splicing variants
-```
--arg '-splicing 15',,, \
-```
----
-<a id="4"></a>
 
 ## 4. Output explanation
 The output file contains multiple columns.
