@@ -28,7 +28,7 @@ Files that you will need:
 #### Set up your directory ..
 
 ```
-cd /data/LNG/saraB/ANNO/
+cd Desktop/TEST/
 ```
 #### Make a folder to store outputs ..
 
@@ -63,7 +63,7 @@ This package can make the following annotations:
 
 **Annotation at the gene level**
 
-It allows identifying if a SNP or structural variant (eg CNV) causes changes at the protein level and which amino acids are affected. Users can use independent data sets for nominal genes (RefSeq, UCSC, ENSEMBL, GENCODE).
+It allows identifying if a SNP or structural variant (eg CNV) causes changes at the protein level and which amino acids are affected. Users can use independent datasets to call genes (RefSeq, UCSC, ENSEMBL, GENCODE).
 
 **Annotation at the region level**
 
