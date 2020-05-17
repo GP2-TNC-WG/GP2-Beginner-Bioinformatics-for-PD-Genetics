@@ -222,7 +222,7 @@ confMat
 ### Data visualization - Density plots
 
 ```
-densPlot <- ggplot(data, aes(probDisease, fill = CASE, color = CASE)) + geom_density(alpha = 0.5) + theme_bw()
+densPlot <- ggplot(data, aes(probDisease, fill = reported, color = reported)) + geom_density(alpha = 0.5) + theme_bw()
 ggsave(plot = densPlot, filename = "plotDensity.png", width = 8, height = 5, units = "in", dpi = 300)
 
 ```
