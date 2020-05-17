@@ -8,11 +8,9 @@
 
 #### [1. Background](#1)
 
-#### [2. VCF file conversion](#2)
+#### [2. Annotation](#3)
 
-#### [3. Annotation](#3)
-
-#### [4. Output explanation](#3)
+#### [3. Output explanation](#3)
 
 ---
 <a id="0"></a>
@@ -81,15 +79,6 @@ It allows identifying variants documented in different databases (eg, whether or
 
 <a id="2"></a>
 
-## 2. Convert *.VCF into *.avinput
-```
-perl convert2annovar.pl -format vcf4 TEST.vcf > TEST.avinput
-```
-VCF is the gold standard format that most researchers use. Normally we start from a * .VCF file and make it a more manageable * .avinput input.
-
----
-<a id="3"></a>
-
 ## 3. Annotation
 ```
 table_annovar.pl TEST.vcf humandb/ -buildver hg38 -out TEST.annovar -remove -protocol refGene,ljb26_all,gnomad211_genome,clinvar_20140902 -operation g,f,f,f -nastring . -vcfinput
@@ -103,6 +92,7 @@ The protocols can be "g" that indicates "annotation at the level of the gene" or
 The -nastring argument will add a "." for those variants for which there is no information.
 The -csvout argument will generate an output in csv format easily readable by excel.
 
+<a id="3"></a>
 
 ## 4. Output explanation
 The output file contains multiple columns.
@@ -111,4 +101,4 @@ The columns Func.refGene, Gene.refGene, GeneDetail.refGene, ExonicFunc.refGene, 
 The ExAC * columns represent the allele frequency in different sub-populations within the Exome Aggregation Consortium, while avsnp147 refers to the rs ID of each variant in version 147 of dbSNP.
 The remaining columns contain pathogenicity predictors for non-synonymous variants using the SIFT tools, PolyPhen2 HDIV scores, PolyPhen2 HVAR scores, LRT scores, MutationTaster scores, MutationAssessor score, FATHMM scores, GERP ++ scores, CADD scores, DANN scores, PhyloP scores and SiPhy scores.
 
-<a id="5"></a>
+<a id="4"></a>
