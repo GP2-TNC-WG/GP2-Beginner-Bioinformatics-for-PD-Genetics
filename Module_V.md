@@ -81,7 +81,7 @@ It allows identifying variants documented in different databases (eg, whether or
 
 ## 3. Annotation
 ```
-table_annovar.pl TEST.vcf humandb/ -buildver hg38 -out TEST.annovar -remove -protocol refGene,ljb26_all,gnomad211_genome,clinvar_20140902 -operation g,f,f,f -nastring . -vcfinput
+perl table_annovar.pl TEST.vcf humandb/ -buildver hg38 -out TEST.annovar -remove -protocol refGene,ljb26_all,gnomad211_genome,clinvar_20140902 -operation g,f,f,f -nastring . -vcfinput
 ```
  WGS data usually aligned with the human genome construct version GRCh38. We must map our variants in the same way.
 
