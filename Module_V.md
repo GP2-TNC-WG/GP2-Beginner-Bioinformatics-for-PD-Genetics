@@ -38,7 +38,7 @@ mkdir ANNOVAR_output
 #### Download ANNOVAR
 
 ```
-http://download.openbioinformatics.org/cgi-bin/annovar_download.cgi
+https://annovar.openbioinformatics.org/en/latest/user-guide/download/
 ```
 
 #### Uncompress ANNOVAR
