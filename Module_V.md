@@ -49,9 +49,14 @@ tar xvfz annovar.latest.tar.gz
 #### Download resources needed to perform annotation
 ```
 perl annotate_variation.pl -buildver hg38 -downdb -webfrom annovar refGene humandb/
+perl annotate_variation.pl -buildver hg38 -downdb cytoBand humandb/
+perl annotate_variation.pl -buildver hg38 -downdb -webfrom annovar ensGene humandb/
 perl annotate_variation.pl -buildver hg38 -downdb -webfrom annovar exac03 humandb/ 
 perl annotate_variation.pl -buildver hg38 -downdb -webfrom annovar avsnp147 humandb/ 
 perl annotate_variation.pl -buildver hg38 -downdb -webfrom annovar dbnsfp30a humandb/
+perl annotate_variation.pl -buildver hg38 -downdb -webfrom annovar gnomad211_genome humandb/
+perl annotate_variation.pl -buildver hg38 -downdb -webfrom annovar ljb26_all humandb/
+perl annotate_variation.pl -buildver hg38 -downdb -webfrom annovar clinvar_20140902 humandb/
 ```
 ---
 <a id="1"></a>
