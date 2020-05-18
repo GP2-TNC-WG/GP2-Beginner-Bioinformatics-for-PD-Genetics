@@ -212,9 +212,6 @@ FROM `{BQ_RELEASE_DATASET}.__TABLES__`
 bq_query(clinical_tables)
 ```
 
-    Downloading: 100%|██████████| 33/33 [00:00<00:00, 246.21rows/s]
-
-
 
 
 
@@ -222,14 +219,6 @@ bq_query(clinical_tables)
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
     }
 </style>
 <table border="1" class="dataframe">
