@@ -44,17 +44,19 @@
 ```python
 print(3 + 3)
 ```
-
+Ouput Example:
+```
     6
 
-
+```
 
 ```python
 print(20 * 2)
 ```
 Output Example:
+```
     40
-
+```
 
 
 ```bash
@@ -62,10 +64,11 @@ Output Example:
 
 pwd
 ```
-
+Output Example:
+```
     /home/jupyter-user/notebooks/AMP PD WGS QC Collaboration/edit
 
-
+```
 <a id="1"></a>
 ## 1. Getting Started
 
