@@ -28,11 +28,7 @@ Files that you will need:
 ```
 cd Desktop/TEST/
 ```
-#### Make a folder to store outputs ..
 
-```
-mkdir ANNOVAR_output
-```
 #### Download ANNOVAR
 
 ```
