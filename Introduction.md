@@ -38,7 +38,7 @@
 - Hit the ```Run``` button in the top left to move through the cells running the code sequentially as you go.
 
 
-- You can also run cells with commands like you would use in your terminal using "%%bash"
+- You can also turn cells into bash cells to use commands like you would use in your terminal by using "%%bash"
 
 
 ```python
