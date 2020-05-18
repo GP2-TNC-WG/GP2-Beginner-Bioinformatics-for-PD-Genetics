@@ -518,23 +518,20 @@ FROM `{BQ_RELEASE_DATASET}.Demographics`
 demo = bq_query(demographics)
 ```
 
-    Downloading: 100%|██████████| 4298/4298 [00:00<00:00, 9397.12rows/s]
-
-
 
 ```python
 demo.info()
 ```
 
-    <class 'pandas.core.frame.DataFrame'>
-    RangeIndex: 4298 entries, 0 to 4297
-    Data columns (total 4 columns):
-    participant_id     4298 non-null object
-    age_at_baseline    4298 non-null int64
-    sex                4298 non-null object
-    race               4297 non-null object
-    dtypes: int64(1), object(3)
-    memory usage: 134.4+ KB
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 4298 entries, 0 to 4297
+Data columns (total 4 columns):
+participant_id     4298 non-null object
+age_at_baseline    4298 non-null int64
+sex                4298 non-null object
+race               4297 non-null object
+dtypes: int64(1), object(3)
+memory usage: 134.4+ KB
 
 
 
@@ -546,19 +543,7 @@ demo.head()
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -623,19 +608,7 @@ demo2.head()
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -711,9 +684,6 @@ FROM `{BQ_RELEASE_DATASET}.duplicate_subjects`
 duplicates = bq_query(dups)
 ```
 
-    Downloading: 100%|██████████| 24/24 [00:00<00:00, 198.55rows/s]
-
-
 
 ```python
 duplicates
@@ -723,19 +693,7 @@ duplicates
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -929,8 +887,6 @@ VARIANT_QUERY = f"""
 variant1 = bq_query(VARIANT_QUERY)
 ```
 
-    Downloading: 100%|██████████| 87/87 [00:01<00:00, 81.46rows/s]
-
 
 
 ```python
@@ -941,19 +897,7 @@ variant1.head()
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1087,19 +1031,8 @@ sample_ids.head()
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1149,43 +1082,43 @@ with open('test_sample_ids.csv', 'w') as f:
 ls
 ```
 
-    BigQuerySampleQC.ipynb
-    BigQueryVariantQC.ipynb
-    compareNeuroXvsSeq.ipynb
-    Example - Running a GWAS-Copy1.ipynb
-    Example - Running a GWAS - deflaux.ipynb
-    flagByGATKsummaryMetrics.ipynb
-    [0m[01;34mgs:[0m/
-    [01;34mhampton_temp[0m/
-    Hampton_testing.ipynb
-    HI0_getStarted.ipynb
-    HI1_flagByGATKsummaryMetrics.ipynb
-    HI2_compareNeuroXvsSeq.ipynb
-    HI3_plinkQC.ipynb
-    HI3_qcAmpPDplink.ipynb
-    HI4_reportQCresults.ipynb
-    Hirotaka_ClinicalData.ipynb
-    HIX_HeterozygosityEvaluation.ipynb
-    How_to_use_Terra_Training_Course.ipynb
-    [01;34mhtslib[0m/
-    Matt's copy of Hampton's notebook.ipynb
-    Pulling LRRK2 GBA SNCA Samples.ipynb
-    Py3 - Start Here (Hirotaka).ipynb
-    Py3 - WGS - Start Here(copy).ipynb
-    qcAmpPDplink2.ipynb
-    QC Notebook (Hirotaka).ipynb
-    QC Notebook (Matt) - Python3.ipynb
-    Rbigquery.ipynb
-    R Environment Setup .ipynb
-    reportQCresults.ipynb
-    R - Save and load R objects from workspace bucket.ipynb
-    Taking a closer look at the star alternate allele.ipynb
-    Terra_for_AMP_PD_Video1.ipynb
-    testGWAS.ipynb
-    Test - Running a GWAS.ipynb
-    test_sample_ids.csv
-    VCF_Sample_Filter.ipynb
-    WGS_sample_IDs.csv
+BigQuerySampleQC.ipynb
+BigQueryVariantQC.ipynb
+compareNeuroXvsSeq.ipynb
+Example - Running a GWAS-Copy1.ipynb
+Example - Running a GWAS - deflaux.ipynb
+flagByGATKsummaryMetrics.ipynb
+[0m[01;34mgs:[0m/
+[01;34mhampton_temp[0m/
+Hampton_testing.ipynb
+HI0_getStarted.ipynb
+HI1_flagByGATKsummaryMetrics.ipynb
+HI2_compareNeuroXvsSeq.ipynb
+HI3_plinkQC.ipynb
+HI3_qcAmpPDplink.ipynb
+HI4_reportQCresults.ipynb
+Hirotaka_ClinicalData.ipynb
+HIX_HeterozygosityEvaluation.ipynb
+How_to_use_Terra_Training_Course.ipynb
+[01;34mhtslib[0m/
+Matt's copy of Hampton's notebook.ipynb
+Pulling LRRK2 GBA SNCA Samples.ipynb
+Py3 - Start Here (Hirotaka).ipynb
+Py3 - WGS - Start Here(copy).ipynb
+qcAmpPDplink2.ipynb
+QC Notebook (Hirotaka).ipynb
+QC Notebook (Matt) - Python3.ipynb
+Rbigquery.ipynb
+R Environment Setup .ipynb
+reportQCresults.ipynb
+R - Save and load R objects from workspace bucket.ipynb
+Taking a closer look at the star alternate allele.ipynb
+Terra_for_AMP_PD_Video1.ipynb
+testGWAS.ipynb
+Test - Running a GWAS.ipynb
+test_sample_ids.csv
+VCF_Sample_Filter.ipynb
+WGS_sample_IDs.csv
 
 
 
@@ -1193,10 +1126,10 @@ ls
 shell_do(f'gsutil -u {BILLING_PROJECT_ID} cp -r ./test_sample_ids.csv {WORKSPACE_BUCKET}')
 ```
 
-    Executing: gsutil -u fc-amp-pd-alpha cp -r ./test_sample_ids.csv gs://fc-secure-e4c969f8-ebed-4ab2-bd4c-a53cd897cddb
-    Copying file://./test_sample_ids.csv [Content-Type=text/csv]...
-    / [1 files][ 33.4 KiB/ 33.4 KiB]                                                
-    Operation completed over 1 objects/33.4 KiB.                                     
+Executing: gsutil -u fc-amp-pd-alpha cp -r ./test_sample_ids.csv gs://fc-secure-e4c969f8-ebed-4ab2-bd4c-a53cd897cddb
+Copying file://./test_sample_ids.csv [Content-Type=text/csv]...
+/ [1 files][ 33.4 KiB/ 33.4 KiB]                                                
+Operation completed over 1 objects/33.4 KiB.                                     
 
 
 <a id="4"></a>
@@ -1210,61 +1143,61 @@ shell_do(f'gsutil -u {BILLING_PROJECT_ID} cp -r ./test_sample_ids.csv {WORKSPACE
 shell_do(f'gsutil -u {BILLING_PROJECT_ID} ls {GS_CLINICAL_RELEASE_PATH}')
 ```
 
-    Executing: gsutil -u fc-amp-pd-alpha ls gs://amp-pd-data/releases/2019_v1release_1015/clinical
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/Biospecimen_analyses_CSF_abeta_tau_ptau.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/Biospecimen_analyses_CSF_abeta_tau_ptau_dictionary.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/Biospecimen_analyses_CSF_beta_glucocerebrosidase.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/Biospecimen_analyses_CSF_beta_glucocerebrosidase_dictionary.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/Biospecimen_analyses_SomaLogic_plasma.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/Biospecimen_analyses_SomaLogic_plasma_dictionary.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/Biospecimen_analyses_other.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/Biospecimen_analyses_other_dictionary.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/Caffeine_history.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/Caffeine_history_dictionary.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/DTI.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/DTI_dictionary.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/DaTSCAN_SBR.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/DaTSCAN_SBR_dictionary.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/DaTSCAN_visual_interpretation.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/DaTSCAN_visual_interpretation_dictionary.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/Demographics.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/Demographics_dictionary.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/Enrollment.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/Enrollment_dictionary.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/Epworth_Sleepiness_Scale.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/Epworth_Sleepiness_Scale_dictionary.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/Family_History_PD.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/Family_History_PD_dictionary.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/MDS_UPDRS_Part_I.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/MDS_UPDRS_Part_II.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/MDS_UPDRS_Part_III.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/MDS_UPDRS_Part_III_dictionary.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/MDS_UPDRS_Part_II_dictionary.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/MDS_UPDRS_Part_IV.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/MDS_UPDRS_Part_IV_dictionary.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/MDS_UPDRS_Part_I_dictionary.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/MMSE.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/MMSE_dictionary.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/MOCA.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/MOCA_dictionary.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/MRI.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/MRI_dictionary.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/Modified_Schwab___England_ADL.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/Modified_Schwab___England_ADL_dictionary.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/PDQ_39.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/PDQ_39_dictionary.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/PD_Medical_History.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/PD_Medical_History_dictionary.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/REM_Sleep_Behavior_Disorder_Questionnaire_Mayo.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/REM_Sleep_Behavior_Disorder_Questionnaire_Mayo_dictionary.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster_dictionary.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/Smoking_and_alcohol_history.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/Smoking_and_alcohol_history_dictionary.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/UPDRS.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/UPDRS_dictionary.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/UPSIT.csv
-    gs://amp-pd-data/releases/2019_v1release_1015/clinical/UPSIT_dictionary.csv
+Executing: gsutil -u fc-amp-pd-alpha ls gs://amp-pd-data/releases/2019_v1release_1015/clinical
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/Biospecimen_analyses_CSF_abeta_tau_ptau.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/Biospecimen_analyses_CSF_abeta_tau_ptau_dictionary.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/Biospecimen_analyses_CSF_beta_glucocerebrosidase.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/Biospecimen_analyses_CSF_beta_glucocerebrosidase_dictionary.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/Biospecimen_analyses_SomaLogic_plasma.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/Biospecimen_analyses_SomaLogic_plasma_dictionary.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/Biospecimen_analyses_other.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/Biospecimen_analyses_other_dictionary.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/Caffeine_history.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/Caffeine_history_dictionary.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/DTI.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/DTI_dictionary.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/DaTSCAN_SBR.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/DaTSCAN_SBR_dictionary.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/DaTSCAN_visual_interpretation.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/DaTSCAN_visual_interpretation_dictionary.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/Demographics.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/Demographics_dictionary.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/Enrollment.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/Enrollment_dictionary.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/Epworth_Sleepiness_Scale.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/Epworth_Sleepiness_Scale_dictionary.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/Family_History_PD.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/Family_History_PD_dictionary.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/MDS_UPDRS_Part_I.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/MDS_UPDRS_Part_II.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/MDS_UPDRS_Part_III.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/MDS_UPDRS_Part_III_dictionary.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/MDS_UPDRS_Part_II_dictionary.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/MDS_UPDRS_Part_IV.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/MDS_UPDRS_Part_IV_dictionary.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/MDS_UPDRS_Part_I_dictionary.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/MMSE.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/MMSE_dictionary.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/MOCA.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/MOCA_dictionary.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/MRI.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/MRI_dictionary.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/Modified_Schwab___England_ADL.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/Modified_Schwab___England_ADL_dictionary.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/PDQ_39.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/PDQ_39_dictionary.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/PD_Medical_History.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/PD_Medical_History_dictionary.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/REM_Sleep_Behavior_Disorder_Questionnaire_Mayo.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/REM_Sleep_Behavior_Disorder_Questionnaire_Mayo_dictionary.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster_dictionary.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/Smoking_and_alcohol_history.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/Smoking_and_alcohol_history_dictionary.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/UPDRS.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/UPDRS_dictionary.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/UPSIT.csv
+gs://amp-pd-data/releases/2019_v1release_1015/clinical/UPSIT_dictionary.csv
 
 
 - Let's read in the `Demographics` CSV
@@ -1276,20 +1209,20 @@ demographics_df = gcs_read_csv(os.path.join(GS_CLINICAL_RELEASE_PATH, 'Demograph
 demographics_df.info()
 ```
 
-    <class 'pandas.core.frame.DataFrame'>
-    RangeIndex: 4298 entries, 0 to 4297
-    Data columns (total 9 columns):
-    participant_id           4298 non-null object
-    GUID                     2688 non-null object
-    visit_name               4298 non-null object
-    visit_month              4298 non-null int64
-    age_at_baseline          4298 non-null int64
-    sex                      4298 non-null object
-    ethnicity                4297 non-null object
-    race                     4297 non-null object
-    education_level_years    4297 non-null object
-    dtypes: int64(2), object(7)
-    memory usage: 302.3+ KB
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 4298 entries, 0 to 4297
+Data columns (total 9 columns):
+participant_id           4298 non-null object
+GUID                     2688 non-null object
+visit_name               4298 non-null object
+visit_month              4298 non-null int64
+age_at_baseline          4298 non-null int64
+sex                      4298 non-null object
+ethnicity                4297 non-null object
+race                     4297 non-null object
+education_level_years    4297 non-null object
+dtypes: int64(2), object(7)
+memory usage: 302.3+ KB
 
 
 
@@ -1301,19 +1234,7 @@ demographics_df.head()
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1406,10 +1327,10 @@ First let's look at the locations in the cloud for these files:
 shell_do(f'gsutil -u {BILLING_PROJECT_ID} ls {GS_WGS_RELEASE_PATH}')
 ```
 
-    Executing: gsutil -u fc-amp-pd-alpha ls gs://amp-pd-genomics/releases/2019_v1release_1015/wgs
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/wgs_samples.csv
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/
+Executing: gsutil -u fc-amp-pd-alpha ls gs://amp-pd-genomics/releases/2019_v1release_1015/wgs
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/wgs_samples.csv
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/
 
 
 Let's take a look in the `gatk` directory
@@ -1419,9 +1340,9 @@ Let's take a look in the `gatk` directory
 shell_do(f'gsutil -u {BILLING_PROJECT_ID} ls {GS_WGS_RELEASE_GATK_PATH}')
 ```
 
-    Executing: gsutil -u fc-amp-pd-alpha ls gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/metrics/
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/
+Executing: gsutil -u fc-amp-pd-alpha ls gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/metrics/
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/
 
 
 - In the `gatk` directory, we have metrics files and per-chromosome VCFs.
@@ -1432,79 +1353,79 @@ shell_do(f'gsutil -u {BILLING_PROJECT_ID} ls {GS_WGS_RELEASE_GATK_PATH}')
 shell_do(f'gsutil -u {BILLING_PROJECT_ID} ls {GS_WGS_RELEASE_GATK_PATH}/vcf')
 ```
 
-    Executing: gsutil -u fc-amp-pd-alpha ls gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr1.vcf.gz
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr1.vcf.gz.tbi
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr1.vcf.idx
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr10.vcf.gz
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr10.vcf.gz.tbi
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr10.vcf.idx
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr11.vcf.gz
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr11.vcf.gz.tbi
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr11.vcf.idx
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr12.vcf.gz
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr12.vcf.gz.tbi
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr12.vcf.idx
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr13.vcf.gz
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr13.vcf.gz.tbi
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr13.vcf.idx
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr14.vcf.gz
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr14.vcf.gz.tbi
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr14.vcf.idx
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr15.vcf.gz
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr15.vcf.gz.tbi
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr15.vcf.idx
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr16.vcf.gz
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr16.vcf.gz.tbi
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr16.vcf.idx
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr17.vcf.gz
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr17.vcf.gz.tbi
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr17.vcf.idx
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr18.vcf.gz
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr18.vcf.gz.tbi
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr18.vcf.idx
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr19.vcf.gz
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr19.vcf.gz.tbi
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr19.vcf.idx
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr2.vcf.gz
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr2.vcf.gz.tbi
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr2.vcf.idx
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr20.vcf.gz
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr20.vcf.gz.tbi
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr20.vcf.idx
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr21.vcf.gz
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr21.vcf.gz.tbi
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr21.vcf.idx
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr22.vcf.gz
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr22.vcf.gz.tbi
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr22.vcf.idx
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr3.vcf.gz
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr3.vcf.gz.tbi
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr3.vcf.idx
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr4.vcf.gz
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr4.vcf.gz.tbi
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr4.vcf.idx
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr5.vcf.gz
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr5.vcf.gz.tbi
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr5.vcf.idx
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr6.vcf.gz
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr6.vcf.gz.tbi
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr6.vcf.idx
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr7.vcf.gz
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr7.vcf.gz.tbi
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr7.vcf.idx
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr8.vcf.gz
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr8.vcf.gz.tbi
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr8.vcf.idx
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr9.vcf.gz
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr9.vcf.gz.tbi
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr9.vcf.idx
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chrX.vcf.gz
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chrX.vcf.gz.tbi
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chrX.vcf.idx
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chrY.vcf.gz
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chrY.vcf.gz.tbi
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chrY.vcf.idx
+Executing: gsutil -u fc-amp-pd-alpha ls gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr1.vcf.gz
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr1.vcf.gz.tbi
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr1.vcf.idx
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr10.vcf.gz
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr10.vcf.gz.tbi
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr10.vcf.idx
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr11.vcf.gz
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr11.vcf.gz.tbi
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr11.vcf.idx
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr12.vcf.gz
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr12.vcf.gz.tbi
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr12.vcf.idx
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr13.vcf.gz
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr13.vcf.gz.tbi
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr13.vcf.idx
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr14.vcf.gz
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr14.vcf.gz.tbi
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr14.vcf.idx
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr15.vcf.gz
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr15.vcf.gz.tbi
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr15.vcf.idx
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr16.vcf.gz
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr16.vcf.gz.tbi
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr16.vcf.idx
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr17.vcf.gz
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr17.vcf.gz.tbi
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr17.vcf.idx
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr18.vcf.gz
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr18.vcf.gz.tbi
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr18.vcf.idx
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr19.vcf.gz
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr19.vcf.gz.tbi
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr19.vcf.idx
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr2.vcf.gz
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr2.vcf.gz.tbi
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr2.vcf.idx
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr20.vcf.gz
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr20.vcf.gz.tbi
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr20.vcf.idx
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr21.vcf.gz
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr21.vcf.gz.tbi
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr21.vcf.idx
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr22.vcf.gz
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr22.vcf.gz.tbi
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr22.vcf.idx
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr3.vcf.gz
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr3.vcf.gz.tbi
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr3.vcf.idx
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr4.vcf.gz
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr4.vcf.gz.tbi
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr4.vcf.idx
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr5.vcf.gz
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr5.vcf.gz.tbi
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr5.vcf.idx
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr6.vcf.gz
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr6.vcf.gz.tbi
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr6.vcf.idx
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr7.vcf.gz
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr7.vcf.gz.tbi
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr7.vcf.idx
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr8.vcf.gz
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr8.vcf.gz.tbi
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr8.vcf.idx
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr9.vcf.gz
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr9.vcf.gz.tbi
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr9.vcf.idx
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chrX.vcf.gz
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chrX.vcf.gz.tbi
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chrX.vcf.idx
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chrY.vcf.gz
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chrY.vcf.gz.tbi
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chrY.vcf.idx
 
 
 
@@ -1512,12 +1433,12 @@ shell_do(f'gsutil -u {BILLING_PROJECT_ID} ls {GS_WGS_RELEASE_GATK_PATH}/vcf')
 shell_do(f'gsutil -u {BILLING_PROJECT_ID} ls {GS_WGS_RELEASE_PLINK_PATH}/bfile/all_vcfs*')
 ```
 
-    Executing: gsutil -u fc-amp-pd-alpha ls gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/README.txt
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/all_vcfs.bed
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/all_vcfs.bim
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/all_vcfs.fam
-    gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/all_vcfs.log
+Executing: gsutil -u fc-amp-pd-alpha ls gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/README.txt
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/all_vcfs.bed
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/all_vcfs.bim
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/all_vcfs.fam
+gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/all_vcfs.log
 
 
 Now we can practice copying data from the cloud storage to our cluster. We'll need the Plink binary files for our analysis in a bit, so let's copy those.
@@ -1533,17 +1454,17 @@ cd ~/bin/
 ls
 ```
 
-    bcftools
-    data
-    data_temp
-    htslib
-    king
-    Linux-king
-    plink
-    plink_linux_x86_64_20190304
+bcftools
+data
+data_temp
+htslib
+king
+Linux-king
+plink
+plink_linux_x86_64_20190304
 
 
-    mkdir: cannot create directory ‘/home/jupyter-user/bin/data_temp’: File exists
+mkdir: cannot create directory ‘/home/jupyter-user/bin/data_temp’: File exists
 
 
 
@@ -1551,18 +1472,18 @@ ls
 shell_do(f'gsutil -mu {BILLING_PROJECT_ID} cp {GS_WGS_RELEASE_PLINK_PATH}/bfile/all_vcfs* ~/bin/data_temp')
 ```
 
-    Executing: gsutil -mu fc-amp-pd-alpha cp gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/all_vcfs* ~/bin/data_temp
-    Copying gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/all_vcfs.bim...
-    Copying gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/all_vcfs.log...
-    Copying gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/all_vcfs.bed...
-    ==> NOTE: You are downloading one or more large file(s), which would            
-    run significantly faster if you enabled sliced object downloads. This
-    feature is enabled by default but requires that compiled crcmod be
-    installed (see "gsutil help crcmod").
+Executing: gsutil -mu fc-amp-pd-alpha cp gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/all_vcfs* ~/bin/data_temp
+Copying gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/all_vcfs.bim...
+Copying gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/all_vcfs.log...
+Copying gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/all_vcfs.bed...
+==> NOTE: You are downloading one or more large file(s), which would            
+run significantly faster if you enabled sliced object downloads. This
+feature is enabled by default but requires that compiled crcmod be
+installed (see "gsutil help crcmod").
     
-    Copying gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/all_vcfs.fam...
-    | [4/4 files][ 21.4 GiB/ 21.4 GiB] 100% Done  54.7 MiB/s ETA 00:00:00           
-    Operation completed over 4 objects/21.4 GiB.                                     
+Copying gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/all_vcfs.fam...
+| [4/4 files][ 21.4 GiB/ 21.4 GiB] 100% Done  54.7 MiB/s ETA 00:00:00           
+Operation completed over 4 objects/21.4 GiB.                                     
 
 
 
@@ -1573,10 +1494,10 @@ cd ~/bin/data_temp
 ls
 ```
 
-    all_vcfs.bed
-    all_vcfs.bim
-    all_vcfs.fam
-    all_vcfs.log
+all_vcfs.bed
+all_vcfs.bim
+all_vcfs.fam
+all_vcfs.log
 
 
 
@@ -1588,16 +1509,16 @@ head all_vcfs.bim
 
 ```
 
-    1	rs201752861	0	10177	*	A
-    1	rs201694901	0	10180	C	T
-    1	rs199706086	0	10250	C	A
-    1	rs140194106	0	10254	*	TA
-    1	rs145427775	0	10291	T	C
-    1	rs112750067	0	10327	C	T
-    1	rs55998931	0	10492	T	C
-    1	rs62636508	0	10519	C	G
-    1	rs58108140	0	10583	A	G
-    1	rs189107123	0	10611	G	C
+1	rs201752861	0	10177	*	A
+1	rs201694901	0	10180	C	T
+1	rs199706086	0	10250	C	A
+1	rs140194106	0	10254	*	TA
+1	rs145427775	0	10291	T	C
+1	rs112750067	0	10327	C	T
+1	rs55998931	0	10492	T	C
+1	rs62636508	0	10519	C	G
+1	rs58108140	0	10583	A	G
+1	rs189107123	0	10611	G	C
 
 
 <a id="5"></a>
@@ -1639,7 +1560,7 @@ wget http://s3.amazonaws.com/plink1-assets/plink_linux_x86_64_20190304.zip
 fi
 ```
 
-    Plink is already installed in ~/bin
+Plink is already installed in ~/bin
 
 
 
@@ -1650,18 +1571,18 @@ ls ~/bin/
 
 ```
 
-    bcftools
-    data
-    data_temp
-    htslib
-    king
-    LICENSE
-    Linux-king
-    plink
-    plink_linux_x86_64_20190304.zip
-    prettify
-    toy.map
-    toy.ped
+bcftools
+data
+data_temp
+htslib
+king
+LICENSE
+Linux-king
+plink
+plink_linux_x86_64_20190304.zip
+prettify
+toy.map
+toy.ped
 
 
 
@@ -1669,22 +1590,22 @@ ls ~/bin/
 !~/bin/plink 
 ```
 
-    PLINK v1.90b6.9 64-bit (4 Mar 2019)            www.cog-genomics.org/plink/1.9/
-    (C) 2005-2019 Shaun Purcell, Christopher Chang   GNU General Public License v3
+PLINK v1.90b6.9 64-bit (4 Mar 2019)            www.cog-genomics.org/plink/1.9/
+(C) 2005-2019 Shaun Purcell, Christopher Chang   GNU General Public License v3
     
-      plink <input flag(s)...> [command flag(s)...] [other flag(s)...]
-      plink --help [flag name(s)...]
+ plink <input flag(s)...> [command flag(s)...] [other flag(s)...]
+ plink --help [flag name(s)...]
     
-    Commands include --make-bed, --recode, --flip-scan, --merge-list,
-    --write-snplist, --list-duplicate-vars, --freqx, --missing, --test-mishap,
-    --hardy, --mendel, --ibc, --impute-sex, --indep-pairphase, --r2, --show-tags,
-    --blocks, --distance, --genome, --homozyg, --make-rel, --make-grm-gz,
-    --rel-cutoff, --cluster, --pca, --neighbour, --ibs-test, --regress-distance,
-    --model, --bd, --gxe, --logistic, --dosage, --lasso, --test-missing,
-    --make-perm-pheno, --tdt, --qfam, --annotate, --clump, --gene-report,
-    --meta-analysis, --epistasis, --fast-epistasis, and --score.
+Commands include --make-bed, --recode, --flip-scan, --merge-list,
+--write-snplist, --list-duplicate-vars, --freqx, --missing, --test-mishap,
+--hardy, --mendel, --ibc, --impute-sex, --indep-pairphase, --r2, --show-tags,
+--blocks, --distance, --genome, --homozyg, --make-rel, --make-grm-gz,
+--rel-cutoff, --cluster, --pca, --neighbour, --ibs-test, --regress-distance,
+--model, --bd, --gxe, --logistic, --dosage, --lasso, --test-missing,
+--make-perm-pheno, --tdt, --qfam, --annotate, --clump, --gene-report,
+--meta-analysis, --epistasis, --fast-epistasis, and --score.
     
-    'plink --help | more' describes all functions (warning: long).
+'plink --help | more' describes all functions (warning: long).
 
 
 Now we need our phenotype and covariate files. I'm going to just query a few data fields like we did before. I'm just going to grab diagnosis, sex, and age for this quick example. In reality, you would want to restrict analyses per ancestry and also want to include more covariates like PCs generated by Plink.
@@ -1709,8 +1630,6 @@ FROM `{BQ_RELEASE_DATASET}.Demographics`
 covs = bq_query(covariates)
 ```
 
-    Downloading: 100%|██████████| 4298/4298 [00:00<00:00, 13245.24rows/s]
-
 
 
 ```python
@@ -1721,19 +1640,7 @@ covs.head()
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1790,8 +1697,6 @@ FROM `{BQ_RELEASE_DATASET}.amp_pd_case_control`
 pheno = bq_query(phenotype)
 ```
 
-    Downloading: 100%|██████████| 4298/4298 [00:00<00:00, 12229.42rows/s]
-
 
 
 ```python
@@ -1802,19 +1707,7 @@ pheno.head()
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1895,19 +1788,7 @@ covsp.head()
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1974,19 +1855,7 @@ phenop.head()
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
