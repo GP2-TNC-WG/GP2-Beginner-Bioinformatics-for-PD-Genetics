@@ -75,7 +75,7 @@ It allows identifying variants documented in different databases (eg, whether or
 
 <a id="2"></a>
 
-## 3. Annotation
+## 2. Annotation
 ```
 perl table_annovar.pl TEST.vcf humandb/ -buildver hg38 -out TEST.annovar -remove -protocol refGene,ljb26_all,gnomad211_genome,clinvar_20140902 -operation g,f,f,f -nastring . -vcfinput
 ```
@@ -90,7 +90,7 @@ The -csvout argument will generate an output in csv format easily readable by ex
 
 <a id="3"></a>
 
-## 4. Output explanation
+## 3. Output explanation
 The output file contains multiple columns.
 Each of the columns corresponds to each of the protocols specified in your script.
 The columns Func.refGene, Gene.refGene, GeneDetail.refGene, ExonicFunc.refGene, AAChange.refGene contain annotations on how mutations affect the structure of the gene and protein.
