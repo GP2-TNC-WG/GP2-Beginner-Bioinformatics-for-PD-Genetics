@@ -1978,7 +1978,7 @@ The `--adjust` flag outputs an additional file that includes P values adjusted f
 
 **Tip: After running the command below, you will see the genomic inflation factor is higher than we want. Samples are not stratified by population in this example. In a real analysis you would need to run separate analyses per population or employ some of Plink's population clustering techniques and specify the analysis to run within clusters.**
 
-**In addition, best practice would be to perform variant QC beforehand, such as removing missing by case/control and filtering controls by Hardy-Weinberg equilibrium. No variant QC has been done to these plink files other than removing variants that failed the GATK QC pipeline, so that specific choices could be left up to individual researchers. More information about to perform proper QC is provided in future modules of this course.**
+**In addition, best practice would be to perform variant QC beforehand, such as removing missing by case/control and filtering controls by Hardy-Weinberg equilibrium. No variant QC has been done to these plink files other than removing variants that failed GATK pipeline QC, so that specific choices could be left up to individual researchers. More information about to perform proper QC is provided in future modules of this course.**
 
 
 ```python
