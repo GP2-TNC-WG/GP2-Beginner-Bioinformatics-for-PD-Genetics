@@ -216,11 +216,7 @@ bq_query(clinical_tables)
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-</style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
