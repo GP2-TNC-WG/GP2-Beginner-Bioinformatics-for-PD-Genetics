@@ -52,7 +52,7 @@ print(3 + 3)
 ```python
 print(20 * 2)
 ```
-
+Output Example:
     40
 
 
