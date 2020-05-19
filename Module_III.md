@@ -23,8 +23,6 @@
 
 #### [8. Logistic versus Linear Regressions](#8)
 
-#### [9. Meta-Analysis](#9) --> Might not be in this module?
-
 ---
 <a id="0"></a>
 ## 0. Getting Started
@@ -557,3 +555,20 @@ thisManhattan <- ggplot(plotting, aes(x=BPcum, y=log10P)) +
 ggsave("ManhattanPlot.pdf", thisManhattan, width = 12, height = 5, dpi=300, units = "in")
 ggsave("ManhattanPlot.jpg", thisManhattan, width = 12, height = 5, dpi=300, units = "in")
 ```
+
+---
+<a id="8"></a>
+## 8. Logistic versus Linear Regressions
+
+-   What is the difference between logistic and linear regression?
+	-   Logistic regression is used to 
+		- Predict for binary outcomes (one of 2 options)
+		- Effect reported is the log of odds ratios
+	- Linear regression is used to 
+		- Predict for continuous outcomes (one of many options)
+		- Effect reported is the beta
+    
+-   When do you know what to use?
+	- Use logistic regression if you are trying to predict for a binary outcome, like disease status (yes or no)
+	- The example we are working through falls in this category!
+	- Use linear regression if you are trying to predict a continuous outcome, like age at onset
