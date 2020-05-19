@@ -445,7 +445,7 @@ ggsave("QQPlot_UNIMPUTED.jpg", qqplot, width = 5, height = 5, units = "in")
 ## 7. Data Visualization: Manhattan Plot
 
 <p align="center">
-  <img width="600" height="400" src="images/Manhattan.png">
+  <img width="500" height="200" src="images/Manhattan.png">
 </p>
 
 Figure: Nalls et al., 2019
