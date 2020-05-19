@@ -1,8 +1,7 @@
 ## Module III.  GWAS for Binary and Quantitative Traits 
 
 ### Information
-- **Created by:** GP2 Training and Networking 
-
+- **Created by:** GP2 Training and Networking
 
 ## Table of Contents
 
@@ -58,9 +57,10 @@ library(ggplot2)
 library(qqman)
 ```
 Other programs you will need are:
-- PLINK v1.9
-- RVTests [optional]
-- flashPCA [optional]
+ - **PLINK v1.9** @ https://www.cog-genomics.org/plink/1.9/
+ - **RVTests [OPTIONAL]** @ http://zhanxw.github.io/rvtests/
+ - **R** @ https://www.r-project.org/
+
 
 ---
 <a id="1"></a>
@@ -147,14 +147,14 @@ A GWAS will only be run post-imputation and if it has been QC'd, as shown in Mod
 
 ### Running a GWAS in PLINK 
 ```bash
-plink --bfile EXAMPLE_IMPUTED \
+plink --bfile IMPUTED.HARDCALLS.Demo \
 --logistic --ci 0.95 \
---hide-covar \
---covar EXAMPLE_covariateFile_10PCs.txt \
---covar-name AGE,EDUCATION,SEX,PC1,PC2,PC3,PC4,PC5,PC6,PC7,PC8,PC9,PC10 \
---out IMPUTED.test
+--hide-covar --covar covariateFile_forGWAS.txt \
+--covar-name AGE,SEX,EDUCATION,PC1,PC2,PC3,PC4,PC5,PC6,PC7,PC8,PC9,PC10 \
+--out IMPUTED.HARDCALLS.test
 
 # The --hide-covar option removes each individual test from the output
+# GWAS should only be done on imputed data after the SOFT and HARD call filters outlined in Module II
 ```
 
 Output Example:
@@ -167,10 +167,19 @@ Output Example:
 ```
 
 ### Running a GWAS in RVTests
-```
-
-							Under development -MM.
-
+RVTests allows you to use VCF files, if more convenient for you:
+```bash
+for CHNUM in {1..22} X Y;
+do
+rvtest --noweb --hide-covar \
+--out RVTESTS_exampleGWAS --single wald \
+--inVcf /data/IMPUTATION_SERVER/chr${CHNUM}.vcf.gz \
+--dosage DS \
+--pheno covariateFile_forGWAS.txt \
+--pheno-name PHENO \
+--covar covariateFile_forGWAS.txt \
+--covar-name AGE,SEX,EDUCATION,PC1,PC2,PC3,PC4,PC5,PC6,PC7,PC8,PC9,PC10 
+done
 ```
 
 -   What are the limitations with a GWAS?
@@ -196,15 +205,17 @@ Output Example:
 
 
 ### Generating Summary Statistics
-```
-
-							Under development -MM.
-
-```
+Summary statistics are the output of PLINK's `--logistic` or RVTests `--single wald` 
 
 ---
 <a id="4"></a>
 ## 4. Prep for FUMA GWAS
+
+<p align="center">
+  <img width="500" height="300" src="images/FUMA_DEMO.gif">
+</p>
+
+Figure: Using FUMA GWAS and displaying the results from Blauwendraat et al., 2019 (available on [GWAS catalog](https://www.ebi.ac.uk/gwas/publications/30957308#study_panel))
 
 ### Background Information
 
@@ -221,17 +232,88 @@ From their [website](https://fuma.ctglab.nl/):
 	-  Gene set analysis
 	-  Tissue expression analysis
 
-SOMETHING HERE ABOUT LOOK AT THE SLIDES TO GET STARTED? SAVE IMAGES IN THE README?
+FUMA requires specific columns and column names to be present when uploading. These are typically columns you can find in summary statistics. For this example, we are modifying readily available GWAS summary statistics from [Blauwendraat et al., 2019 PD AAO GWAS](https://www.ebi.ac.uk/gwas/publications/30957308#study_panel) and following FUMA's [tutorial](https://fuma.ctglab.nl/tutorial)
+
+FUMA requires rsIDs to be present, so we will be merging with the [Haplotype Reference Consortium](http://www.haplotype-reference-consortium.org/) (HRC)'s file to extract rsIDs.
+
+```R
+# R
+
+# FUMA REQUIRES THE FOLLOWING COLUMNS
+# SNP | snpid | markername | rsID: rsID
+# CHR | chromosome | chrom: chromosome
+# BP | pos | position: genomic position (hg19)
+# A1 | effect_allele | allele1 | alleleB: affected allele
+# A2 | non_effect_allele | allele2 | alleleA: another allele
+# P | pvalue | p-value | p_value | pval: P-value (Mandatory)
+# OR: Odds Ratio
+# Beta | be: Beta
+# SE: Standard error
+
+# Install the necessary packages
+if (!require(tidyverse)) install.packages('tidyverse')
+if (!require(data.table)) install.packages('data.table')
+if (!require(dplyr)) install.packages('dplyr')
+if (!require(plyr)) install.packages('plyr')
+
+# Load the necessary packages 
+library(tidyverse)
+library(data.table)
+library(dplyr)
+
+# Read in modified HRC panel file 
+hrc_panel <- fread("HRC_RS_conversion_final_new_imputation_server2.txt")
+
+# Read in the GWAS summary statistics
+  # Downloaded from GWAS catalog: Blauwendraat et al., 2019 PD AAO GWAS: https://www.ebi.ac.uk/gwas/publications/30957308#study_panel 
+gwas_sumstats <- fread("IPDGC_AAO_GWAS_sumstats_april_2018.txt")
+
+head(gwas_sumstats)
+head(hrc_panel)
+
+# Create an HRC file that will work better merging in the future 
+result <- data.frame(hrc_panel, do.call(rbind, strsplit(as.character(hrc_panel$POS), ":", fixed = TRUE)))
+
+colnames(result) <- c("rsID", "ID2", "MarkerName", "POS", "REF", "ALT", "CHR", "BP")
+resort <- result %>% select("MarkerName", "rsID", "CHR", "BP", "REF", "ALT", "POS", "ID2")
+write.table(resort, file = "HRC_RS_conversion_final_new_imputation_server2_wCHRBP.txt", col.names = TRUE, row.names=FALSE, na="", quote = FALSE, sep="\t")
+
+
+resort2 <- result %>% select("MarkerName", "rsID", "CHR", "BP", "REF", "ALT")
+write.table(resort2, file = "HRC_RS_conversion_final_new_imputation_server2_wCHRBP_abbrev.txt", col.names = TRUE, row.names=FALSE, na="", quote = FALSE, sep="\t")
+
+# Merge
+merged <- left_join(gwas_sumstats, resort2, by="MarkerName")
+
+#Rename 
+rename_merged <- merged %>% dplyr::rename("A1"="Allele1",
+                                          "A2"="Allele2",
+                                          "SE" = "StdErr",
+                                          "Beta" = "Effect",
+                                          "p-value" = "P-value")
+
+write.table(rename_merged, file = "IPDGC_AAO_Blauwendraat_forFUMA.txt", col.names = TRUE, row.names=FALSE, na="", quote = FALSE, sep="\t")
 ```
 
-							Under development -MM.
-
+Output Example:
 ```
-
-
+MarkerName      A1      A2      Freq1   FreqSE  MinFreq MaxFreq Beta    SE      p-value Direction       HetISq  HetChiSq        HetDf   HetPVal rsID    CHR     BP      REF     ALT
+chr4:90666041   t       c       0.6036  0.0229  0.5505  0.6295  0.698   0.1169  2.348e-09       +-++++++-++++++++       40.4    26.827  16      0.04344 rs356203        4       90666041        C       T
+chr4:90641340   t       c       0.4006  0.0191  0.3725  0.4497  -0.6743 0.1148  4.3e-09 -+------+--------       39.6    26.501  16      0.04738 rs356220        4       90641340        T       C
+chr4:90637601   a       g       0.6007  0.0188  0.5534  0.6287  0.6718  0.1151  5.316e-09       +-++++++-++++++++       36.6    25.236  16      0.06577 rs356219        4       90637601        G       A
+chr4:90761944   t       g       0.2051  0.0191  0.1385  0.2357  0.8154  0.1458  2.223e-08       +++++++--+-+++++-       43.7    28.397  16      0.02833 rs983361        4       90761944        T       G
+chr4:90757505   t       c       0.2009  0.0188  0.1332  0.2319  0.8055  0.1467  4.036e-08       ++++++--++-+++++-       40.4    26.839  16      0.0433  rs1372520       4       90757505        T       C
+chr4:90757309   a       g       0.201   0.0189  0.1334  0.2317  0.804   0.1468  4.301e-08       ++++++--++-+++++-       39.9    26.642  16      0.04564 rs1372519       4       90757309        A       G
+```
 ---
 <a id="5"></a>
 ## 5. Data Visualization: Scree Plot
+
+<p align="center">
+  <img width="400" height="300" src="images/ScreePlot.jpg">
+</p>
+
+Figure: Unpublished Data
 
 ### Background Information
 -   What is a Scree plot?
@@ -278,6 +360,12 @@ ggsave("ScreePlot_IPDGC_unrelated.jpg", scree, width = 5, height = 3.5, units = 
 ---
 <a id="6"></a>
 ## 6. Data Visualization: QQ Plot
+
+<p align="center">
+  <img width="300" height="300" src="images/QQ.png">
+</p>
+
+Figure: Unpublished Data
 
 ### Background Information
 -   What is a QQ plot?
@@ -356,10 +444,116 @@ ggsave("QQPlot_UNIMPUTED.jpg", qqplot, width = 5, height = 5, units = "in")
 <a id="7"></a>
 ## 7. Data Visualization: Manhattan Plot
 
+<p align="center">
+  <img width="600" height="400" src="images/Manhattan.png">
+</p>
+
+Figure: Nalls et al., 2019
+
 ### Background Information 
 
-```
+-   What is a Manhattan plot?
+	-   A Manhattan plot (named after the Manhattan skyline) is a type of scatter plot
+-   Each point in the plot is a SNP, and the higher on the plot it is, the more “associated” that SNP is said to be with the phenotype of interest
 
-							Under development -MM.
+-   Why do we do this?
+	-   Manhattan plots are a visual way to present hundreds of thousands of SNPs in an easy-to-read manner
+	-   The plots also have thresholds for genome-wide significance, making it easy to see how significant a SNP is
+-   How do you read a Manhattan plot?
+	-   Each SNP is a point, separated by chromosomes
+	- The smaller the p-value → higher on the plot → more significant association
+```R
+## Requirements: 
+    # gwasFile: A file containing GWAS summary statistics. Mandatory columns to include are SNP, CHR, BP and P
+        # Format as follows:  
+        # SNP	CHR	BP	P
+        # chr1:60320992	1	60320992	0.38
+    # hitsFile: A file containing annotation for GWAS hits of interest. Mandatory columns to include are SNP, STATUS and GENE
+        # SNPs of interest are listed with a STATUS indicator (binary) and a GENE label (character strings).
+        # Format as follows:
+        # SNP	STATUS	GENE
+        # chr1:154898185	0	PMVK
 
+# Download the necessary packages
+if (!require(tidyverse)) install.packages('tidyverse')
+if (!require(data.table)) install.packages('data.table')
+if (!require(reshape2)) install.packages('reshape2')
+if (!require(ggrepel)) install.packages('ggrepel')
+
+# Load the necessary packages
+library("tidyverse")
+library("data.table")
+library("reshape2")
+library("ggrepel")
+
+# Read in the data 
+gwas <- fread("GWAS_file.txt")
+hits <- fread("SNPs_of_Interest.txt")
+
+# Mung the GWAS summary statistics 
+    # Factor code the p-values as per Pulit et al., 2016
+gwas$log10Praw <- -1*log(gwas$P, base = 10)
+gwas$log10P <- ifelse(gwas$log10Praw > 40, 40, gwas$log10Praw)
+gwas$Plevel <- NA
+gwas$Plevel[gwas$P < 5E-08] <- "possible"
+gwas$Plevel[gwas$P < 5E-09] <- "likely"
+
+# Reduction of the GWAS object
+    # This is for more efficient plotting 
+    # This drops everything not useful in future AUC calcs estiamte in Nalls et al., 2019
+
+gwasFiltered <- subset(gwas, log10P > 3.114074) 
+
+# Highlight the hits of interest to annotate
+snpsOfInterest <- hits$SNP
+
+# Merge the filtered GWAS with the annotated hits of interest
+gwasToPlotUnsorted <- merge(gwasFiltered, hits, by = "SNP", all.x = T)
+gwasToPlot <- gwasToPlotUnsorted[order(gwasToPlotUnsorted$CHR,gwasToPlotUnsorted$BP),]
+
+# Prepare the dataset to plot 
+plotting <- gwasToPlot %>% 
+    group_by(CHR) %>% # Space out the chromosomes accordingly 
+    summarize(chr_len=max(BP)) %>% 
+    
+    mutate(tot=cumsum(chr_len)-chr_len) %>% # Calculate the cumulative position of each chromosome 
+    select(-chr_len) %>%
+    
+    left_join(gwasToPlot, ., by=c("CHR"="CHR")) %>% # Have this information added to the original dataset so you can subset it for plotting 
+    
+    arrange(ordered(CHR), BP) %>%
+    mutate(BPcum=BP+tot) %>% # Space out the SNPs accordingly
+    
+    mutate(is_highlight=ifelse(SNP %in% snpsOfInterest, "yes", "no")) %>% # Highlight the hits 
+    mutate(is_annotate=ifelse(log10P>7.30103, "yes", "no")) 
+
+# Have the x-axis accomodate all chromosome sizes 
+axisdf <- plotting %>% group_by(CHR) %>% summarize(center=( max(BPcum) + min(BPcum) ) / 2 )
+
+# Make the plot panel
+thisManhattan <- ggplot(plotting, aes(x=BPcum, y=log10P)) +
+    geom_point(aes(color=as.factor(CHR)), alpha=0.8, size=1.3) + # Show all the points and color depending on chromosome 
+    scale_color_manual(values = rep(c("light grey", "dark grey"), 22 )) +
+    
+    scale_x_continuous(label = axisdf$CHR, breaks= axisdf$center ) + # Custom X axis that removes the spaces between X axis and SNPs
+    scale_y_continuous(expand = c(0, 0) ) +
+    geom_point(data=subset(plotting, is_highlight=="yes" & Plevel == "likely"), color = "red", size = 2) + # add highlighted points, these highlighted points are adding an estimate of confidence for "genome-wide significant hits"
+    geom_point(data=subset(plotting, is_highlight=="yes" & Plevel == "possible"), color = "orange", size = 2) + # red = more likely to replicate than orange -- related to Pulit et al. 2016
+    
+    geom_label_repel(data=subset(plotting, is_annotate=="yes"), aes(label=GENE, fill=factor(STATUS)), alpha = 0.5,  size=2) + # # add label using ggrepel to avoid overlapping, here the label color coding is STATUS from the hits file and the text is the GENE from that file
+    scale_fill_manual(values = c("aquamarine","cyan")) +
+    
+    theme_bw() +
+    theme( 
+        legend.position="none",
+        panel.border = element_blank(),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank()
+        ) +
+    xlab("BP") +
+    ylab("-log10P")
+
+# Export it 
+ggsave("ManhattanPlot.pdf", thisManhattan, width = 12, height = 5, dpi=300, units = "in")
+ggsave("ManhattanPlot.jpg", thisManhattan, width = 12, height = 5, dpi=300, units = "in")
 ```
