@@ -215,6 +215,8 @@ Summary statistics are the output of PLINK's `--logistic` or RVTests `--single w
 
 Figure: Using FUMA GWAS and displaying the results from Blauwendraat et al., 2019 (available on [GWAS catalog](https://www.ebi.ac.uk/gwas/publications/30957308#study_panel))
 
+FUMA results can be accessed [here](https://fuma.ctglab.nl/snp2gene/80751)
+
 ### Background Information
 
 From their [website](https://fuma.ctglab.nl/):
