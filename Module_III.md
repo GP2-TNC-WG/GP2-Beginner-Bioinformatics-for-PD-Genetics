@@ -13,13 +13,13 @@
 
 #### [3. Generating Summary Statistics](#3)
 
-#### [4. Prep for FUMA GWAS](#4)
+#### [4. Data Visualization: Scree Plot](#4)
 
-#### [5. Data Visualization: Scree Plot](#5)
+#### [5. Data Visualization: QQ Plot](#5)
 
-#### [6. Data Visualization: QQ Plot](#6)
+#### [6. Data Visualization: Manhattan Plot](#6)
 
-#### [7. Data Visualization: Manhattan Plot](#7)
+#### [7. Prep for FUMA GWAS](#7)
 
 #### [8. Logistic versus Linear Regressions](#8)
 
@@ -205,109 +205,10 @@ done
 ### Generating Summary Statistics
 Summary statistics are the output of PLINK's `--logistic` or RVTests `--single wald` 
 
+
 ---
 <a id="4"></a>
-## 4. Prep for FUMA GWAS
-
-<p align="center">
-  <img width="500" height="300" src="images/FUMA_DEMO.gif">
-</p>
-
-Figure: Using FUMA GWAS and displaying the results from Blauwendraat et al., 2019 (available on [GWAS catalog](https://www.ebi.ac.uk/gwas/publications/30957308#study_panel))
-
-FUMA results can be accessed [here](https://fuma.ctglab.nl/snp2gene/80751)
-
-### Background Information
-
-From their [website](https://fuma.ctglab.nl/):
--   “FUMA is a platform that can be used to annotate, prioritize, visualize and interpret GWAS results”  
--   “The ***SNP2GENE*** function takes GWAS summary statistics as an input, and provides extensive functional annotation for all SNPs in genomic areas identified by lead SNPs”
-
--   How do I get started with FUMA?
-	-   Register with your email address
-    -   Summary statistics ready with rsIDs (can merge with HRC)
-    
--   What kind of information can I get?
-	-  GWAS-based and gene-based Manhattan and QQ plots
-	-  Gene set analysis
-	-  Tissue expression analysis
-
-FUMA requires specific columns and column names to be present when uploading. These are typically columns you can find in summary statistics. For this example, we are modifying readily available GWAS summary statistics from [Blauwendraat et al., 2019 PD AAO GWAS](https://www.ebi.ac.uk/gwas/publications/30957308#study_panel) and following FUMA's [tutorial](https://fuma.ctglab.nl/tutorial)
-
-FUMA requires rsIDs to be present, so we will be merging with the [Haplotype Reference Consortium](http://www.haplotype-reference-consortium.org/) (HRC)'s file to extract rsIDs.
-
-```R
-# R
-
-# FUMA REQUIRES THE FOLLOWING COLUMNS
-# SNP | snpid | markername | rsID: rsID
-# CHR | chromosome | chrom: chromosome
-# BP | pos | position: genomic position (hg19)
-# A1 | effect_allele | allele1 | alleleB: affected allele
-# A2 | non_effect_allele | allele2 | alleleA: another allele
-# P | pvalue | p-value | p_value | pval: P-value (Mandatory)
-# OR: Odds Ratio
-# Beta | be: Beta
-# SE: Standard error
-
-# Install the necessary packages
-if (!require(tidyverse)) install.packages('tidyverse')
-if (!require(data.table)) install.packages('data.table')
-if (!require(dplyr)) install.packages('dplyr')
-if (!require(plyr)) install.packages('plyr')
-
-# Load the necessary packages 
-library(tidyverse)
-library(data.table)
-library(dplyr)
-
-# Read in modified HRC panel file 
-hrc_panel <- fread("HRC_RS_conversion_final_new_imputation_server2.txt")
-
-# Read in the GWAS summary statistics
-  # Downloaded from GWAS catalog: Blauwendraat et al., 2019 PD AAO GWAS: https://www.ebi.ac.uk/gwas/publications/30957308#study_panel 
-gwas_sumstats <- fread("IPDGC_AAO_GWAS_sumstats_april_2018.txt")
-
-head(gwas_sumstats)
-head(hrc_panel)
-
-# Create an HRC file that will work better merging in the future 
-result <- data.frame(hrc_panel, do.call(rbind, strsplit(as.character(hrc_panel$POS), ":", fixed = TRUE)))
-
-colnames(result) <- c("rsID", "ID2", "MarkerName", "POS", "REF", "ALT", "CHR", "BP")
-resort <- result %>% select("MarkerName", "rsID", "CHR", "BP", "REF", "ALT", "POS", "ID2")
-write.table(resort, file = "HRC_RS_conversion_final_new_imputation_server2_wCHRBP.txt", col.names = TRUE, row.names=FALSE, na="", quote = FALSE, sep="\t")
-
-
-resort2 <- result %>% select("MarkerName", "rsID", "CHR", "BP", "REF", "ALT")
-write.table(resort2, file = "HRC_RS_conversion_final_new_imputation_server2_wCHRBP_abbrev.txt", col.names = TRUE, row.names=FALSE, na="", quote = FALSE, sep="\t")
-
-# Merge
-merged <- left_join(gwas_sumstats, resort2, by="MarkerName")
-
-#Rename 
-rename_merged <- merged %>% dplyr::rename("A1"="Allele1",
-                                          "A2"="Allele2",
-                                          "SE" = "StdErr",
-                                          "Beta" = "Effect",
-                                          "p-value" = "P-value")
-
-write.table(rename_merged, file = "IPDGC_AAO_Blauwendraat_forFUMA.txt", col.names = TRUE, row.names=FALSE, na="", quote = FALSE, sep="\t")
-```
-
-Output Example:
-```
-MarkerName      A1      A2      Freq1   FreqSE  MinFreq MaxFreq Beta    SE      p-value Direction       HetISq  HetChiSq        HetDf   HetPVal rsID    CHR     BP      REF     ALT
-chr4:90666041   t       c       0.6036  0.0229  0.5505  0.6295  0.698   0.1169  2.348e-09       +-++++++-++++++++       40.4    26.827  16      0.04344 rs356203        4       90666041        C       T
-chr4:90641340   t       c       0.4006  0.0191  0.3725  0.4497  -0.6743 0.1148  4.3e-09 -+------+--------       39.6    26.501  16      0.04738 rs356220        4       90641340        T       C
-chr4:90637601   a       g       0.6007  0.0188  0.5534  0.6287  0.6718  0.1151  5.316e-09       +-++++++-++++++++       36.6    25.236  16      0.06577 rs356219        4       90637601        G       A
-chr4:90761944   t       g       0.2051  0.0191  0.1385  0.2357  0.8154  0.1458  2.223e-08       +++++++--+-+++++-       43.7    28.397  16      0.02833 rs983361        4       90761944        T       G
-chr4:90757505   t       c       0.2009  0.0188  0.1332  0.2319  0.8055  0.1467  4.036e-08       ++++++--++-+++++-       40.4    26.839  16      0.0433  rs1372520       4       90757505        T       C
-chr4:90757309   a       g       0.201   0.0189  0.1334  0.2317  0.804   0.1468  4.301e-08       ++++++--++-+++++-       39.9    26.642  16      0.04564 rs1372519       4       90757309        A       G
-```
----
-<a id="5"></a>
-## 5. Data Visualization: Scree Plot
+## 4. Data Visualization: Scree Plot
 
 <p align="center">
   <img width="400" height="300" src="images/ScreePlot.jpg">
@@ -358,8 +259,8 @@ ggsave("ScreePlot_IPDGC_unrelated.pdf", scree, width = 5, height = 3.5, units = 
 ggsave("ScreePlot_IPDGC_unrelated.jpg", scree, width = 5, height = 3.5, units = "in")
 ```
 ---
-<a id="6"></a>
-## 6. Data Visualization: QQ Plot
+<a id="5"></a>
+## 5. Data Visualization: QQ Plot
 
 <p align="center">
   <img width="300" height="300" src="images/QQ.png">
@@ -441,8 +342,8 @@ ggsave("QQPlot_UNIMPUTED.jpg", qqplot, width = 5, height = 5, units = "in")
 ```
 
 ---
-<a id="7"></a>
-## 7. Data Visualization: Manhattan Plot
+<a id="6"></a>
+## 6. Data Visualization: Manhattan Plot
 
 <p align="center">
   <img width="500" height="200" src="images/Manhattan.png">
@@ -556,6 +457,106 @@ thisManhattan <- ggplot(plotting, aes(x=BPcum, y=log10P)) +
 # Export it 
 ggsave("ManhattanPlot.pdf", thisManhattan, width = 12, height = 5, dpi=300, units = "in")
 ggsave("ManhattanPlot.jpg", thisManhattan, width = 12, height = 5, dpi=300, units = "in")
+```
+---
+<a id="7"></a>
+## 7. Prep for FUMA GWAS
+
+<p align="center">
+  <img width="500" height="300" src="images/FUMA_DEMO.gif">
+</p>
+
+Figure: Using FUMA GWAS and displaying the results from Blauwendraat et al., 2019 (available on [GWAS catalog](https://www.ebi.ac.uk/gwas/publications/30957308#study_panel))
+
+FUMA results can be accessed [here](https://fuma.ctglab.nl/snp2gene/80751)
+
+### Background Information
+
+From their [website](https://fuma.ctglab.nl/):
+-   “FUMA is a platform that can be used to annotate, prioritize, visualize and interpret GWAS results”  
+-   “The ***SNP2GENE*** function takes GWAS summary statistics as an input, and provides extensive functional annotation for all SNPs in genomic areas identified by lead SNPs”
+
+-   How do I get started with FUMA?
+	-   Register with your email address
+    -   Summary statistics ready with rsIDs (can merge with HRC)
+    
+-   What kind of information can I get?
+	-  GWAS-based and gene-based Manhattan and QQ plots
+	-  Gene set analysis
+	-  Tissue expression analysis
+
+FUMA requires specific columns and column names to be present when uploading. These are typically columns you can find in summary statistics. For this example, we are modifying readily available GWAS summary statistics from [Blauwendraat et al., 2019 PD AAO GWAS](https://www.ebi.ac.uk/gwas/publications/30957308#study_panel) and following FUMA's [tutorial](https://fuma.ctglab.nl/tutorial)
+
+FUMA requires rsIDs to be present, so we will be merging with the [Haplotype Reference Consortium](http://www.haplotype-reference-consortium.org/) (HRC)'s file to extract rsIDs.
+
+```R
+# R
+
+# FUMA REQUIRES THE FOLLOWING COLUMNS
+# SNP | snpid | markername | rsID: rsID
+# CHR | chromosome | chrom: chromosome
+# BP | pos | position: genomic position (hg19)
+# A1 | effect_allele | allele1 | alleleB: affected allele
+# A2 | non_effect_allele | allele2 | alleleA: another allele
+# P | pvalue | p-value | p_value | pval: P-value (Mandatory)
+# OR: Odds Ratio
+# Beta | be: Beta
+# SE: Standard error
+
+# Install the necessary packages
+if (!require(tidyverse)) install.packages('tidyverse')
+if (!require(data.table)) install.packages('data.table')
+if (!require(dplyr)) install.packages('dplyr')
+if (!require(plyr)) install.packages('plyr')
+
+# Load the necessary packages 
+library(tidyverse)
+library(data.table)
+library(dplyr)
+
+# Read in modified HRC panel file 
+hrc_panel <- fread("HRC_RS_conversion_final_new_imputation_server2.txt")
+
+# Read in the GWAS summary statistics
+  # Downloaded from GWAS catalog: Blauwendraat et al., 2019 PD AAO GWAS: https://www.ebi.ac.uk/gwas/publications/30957308#study_panel 
+gwas_sumstats <- fread("IPDGC_AAO_GWAS_sumstats_april_2018.txt")
+
+head(gwas_sumstats)
+head(hrc_panel)
+
+# Create an HRC file that will work better merging in the future 
+result <- data.frame(hrc_panel, do.call(rbind, strsplit(as.character(hrc_panel$POS), ":", fixed = TRUE)))
+
+colnames(result) <- c("rsID", "ID2", "MarkerName", "POS", "REF", "ALT", "CHR", "BP")
+resort <- result %>% select("MarkerName", "rsID", "CHR", "BP", "REF", "ALT", "POS", "ID2")
+write.table(resort, file = "HRC_RS_conversion_final_new_imputation_server2_wCHRBP.txt", col.names = TRUE, row.names=FALSE, na="", quote = FALSE, sep="\t")
+
+
+resort2 <- result %>% select("MarkerName", "rsID", "CHR", "BP", "REF", "ALT")
+write.table(resort2, file = "HRC_RS_conversion_final_new_imputation_server2_wCHRBP_abbrev.txt", col.names = TRUE, row.names=FALSE, na="", quote = FALSE, sep="\t")
+
+# Merge
+merged <- left_join(gwas_sumstats, resort2, by="MarkerName")
+
+#Rename 
+rename_merged <- merged %>% dplyr::rename("A1"="Allele1",
+                                          "A2"="Allele2",
+                                          "SE" = "StdErr",
+                                          "Beta" = "Effect",
+                                          "p-value" = "P-value")
+
+write.table(rename_merged, file = "IPDGC_AAO_Blauwendraat_forFUMA.txt", col.names = TRUE, row.names=FALSE, na="", quote = FALSE, sep="\t")
+```
+
+Output Example:
+```
+MarkerName      A1      A2      Freq1   FreqSE  MinFreq MaxFreq Beta    SE      p-value Direction       HetISq  HetChiSq        HetDf   HetPVal rsID    CHR     BP      REF     ALT
+chr4:90666041   t       c       0.6036  0.0229  0.5505  0.6295  0.698   0.1169  2.348e-09       +-++++++-++++++++       40.4    26.827  16      0.04344 rs356203        4       90666041        C       T
+chr4:90641340   t       c       0.4006  0.0191  0.3725  0.4497  -0.6743 0.1148  4.3e-09 -+------+--------       39.6    26.501  16      0.04738 rs356220        4       90641340        T       C
+chr4:90637601   a       g       0.6007  0.0188  0.5534  0.6287  0.6718  0.1151  5.316e-09       +-++++++-++++++++       36.6    25.236  16      0.06577 rs356219        4       90637601        G       A
+chr4:90761944   t       g       0.2051  0.0191  0.1385  0.2357  0.8154  0.1458  2.223e-08       +++++++--+-+++++-       43.7    28.397  16      0.02833 rs983361        4       90761944        T       G
+chr4:90757505   t       c       0.2009  0.0188  0.1332  0.2319  0.8055  0.1467  4.036e-08       ++++++--++-+++++-       40.4    26.839  16      0.0433  rs1372520       4       90757505        T       C
+chr4:90757309   a       g       0.201   0.0189  0.1334  0.2317  0.804   0.1468  4.301e-08       ++++++--++-+++++-       39.9    26.642  16      0.04564 rs1372519       4       90757309        A       G
 ```
 
 ---
