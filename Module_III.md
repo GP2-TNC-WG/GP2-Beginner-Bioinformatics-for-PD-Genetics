@@ -284,6 +284,14 @@ Figure: Unpublished Data
 	- You can generate a QQ plot pre- or post-imputation
 	-  Post-imputation will be closer to the normal distribution and will look better
 
+### Generating an `.assoc` file in PLINK 
+```bash
+plink --bfile EXAMPLE_UNIMPUTED_QC \
+--assoc --out EXAMPLE_UNIMPUTED_ASSOC
+
+# Will generate a file with *.assoc suffix
+```
+
 ### Making a QQ Plot in R [UNIMPUTED DATA]
 
 ```R
@@ -293,7 +301,7 @@ Figure: Unpublished Data
   # FUMA GWAS will generate a QQ Plot post imputation for you :) 
 
 # Read in the .fam file
-fam.file  <- fread("UMIMPUTED_PD_september_2018_no_duplicates.fam")
+fam.file  <- fread("EXAMPLE_UNIMPUTED_QC.fam")
 
 # Separate out the cases
 case <- sum(fam.file[,6] == 2)
@@ -302,7 +310,7 @@ case <- sum(fam.file[,6] == 2)
 control <-  sum(fam.file[,6] == 1)
 
 # Read in the .assoc file  
-assoc.df <- fread("UMIMPUTED_PD_september_2018_no_duplicates.assoc.assoc")
+assoc.df <- fread("EXAMPLE_UNIMPUTED_ASSOC.assoc")
 
 # Non-factorization is important
 assoc.df = assoc.df[complete.cases(assoc.df), ]
