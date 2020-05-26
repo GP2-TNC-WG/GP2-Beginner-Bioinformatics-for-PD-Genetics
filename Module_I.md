@@ -85,11 +85,11 @@ rm call_rates.nosex
 mv call_rates.imiss CALL_RATES_ALL_SAMPLES.txt
 ```
 
-NOTE:
-All call rates outliers are in CALL_RATE_OUTLIERS.txt
-Open file call_rates.imiss and F_MISS - 1 = callrate
-All call rates saved in CALL_RATES_ALL_SAMPLES.txt
-Removed intermediate files
+NOTES:
+- All call rates outliers are in CALL_RATE_OUTLIERS.txt
+- Open file call_rates.imiss and F_MISS - 1 = callrate
+- All call rates saved in CALL_RATES_ALL_SAMPLES.txt
+- Removed intermediate files
 
 ---
 <a id="2"></a>
@@ -133,10 +133,10 @@ rm all_outliers.txt
 ```
 
 NOTES:
---het from LD pruned data > use F cut-off of -0.15 and <- 0.15 for inclusion
-outliers stored here -> all_outliers.txt
-all heterozygosity is stored here -> HETEROZYGOSITY_DATA.txt
-Removed intermediate files
+- --het from LD pruned data > use F cut-off of -0.15 and <- 0.15 for inclusion
+- outliers stored here -> all_outliers.txt
+- all heterozygosity is stored here -> HETEROZYGOSITY_DATA.txt
+- Removed intermediate files
 
 ---
 <a id="3"></a>
@@ -149,17 +149,17 @@ Removed intermediate files
 ```
 
 NOTES:
-For neuroX data that does not have GWAS back bone, use F cut-off of 0.50 instead of 0.25/0.75 and only use the PAR region’s common variants always)
-PAR = --chr 23 --from-bp 2699520 --to-bp 154931043 --maf 0.05 --geno 0.05 --hwe 1E-5 
-gender failures are stored in GENDER_FAILURES.txt
-gender checks are stored in GENDER_CHECK1.txt and GENDER_CHECK2.txt
+- For neuroX data that does not have GWAS back bone, use F cut-off of 0.50 instead of 0.25/0.75 and only use the PAR region’s common variants always)
+- PAR = --chr 23 --from-bp 2699520 --to-bp 154931043 --maf 0.05 --geno 0.05 --hwe 1E-5 
+- Gender failures are stored in GENDER_FAILURES.txt
+- Gender checks are stored in GENDER_CHECK1.txt and GENDER_CHECK2.txt
 
 ```
 grep "PROBLEM" gender_check1.sexcheck > problems1.txt
 grep "PROBLEM" gender_check2.sexcheck > problems2.txt
 cat problems1.txt problems2.txt > GENDER_FAILURES.txt
-```
 cut -f 1,2 GENDER_FAILURES.txt > samples_to_remove.txt
+```
 
 ```
 ./plink --bfile after_heterozyg_call_rate --remove samples_to_remove.txt --make-bed --out after_gender
@@ -185,10 +185,10 @@ mv gender_check2.sexcheck GENDER_CHECK2.txt
 
 ## 4. Sample QC - Ancestry
 
-NOTE
-This part is optional 
-No ancestry outliers -> based on Hapmap3 PCA plot, should be near combined CEU/TSI
-Keep in mind that this comparison with hapmap is based on the number of SNPs that overlap between your input dataset and hapmap
+NOTES:
+- This part is optional 
+- No ancestry outliers -> based on Hapmap3 PCA plot, should be near combined CEU/TSI
+- Keep in mind that this comparison with hapmap is based on the number of SNPs that overlap between your input dataset and hapmap
 
 ```
 ./plink --bfile after_gender --bmerge HAPMAP_hg19_new --out hapmap3_bin_snplis --make-bed
@@ -221,8 +221,8 @@ R < PCA_in_R.R --no-save
 ```
 
 NOTES:
-Extract population of interest. In this case europeans, but can be any populations that is present in base comparison dataset
-This creates several plots and lists based on genetic ancestry
+- Extract population of interest. In this case europeans, but can be any populations that is present in base comparison dataset
+- This creates several plots and lists based on genetic ancestry
 
 ```
 ./plink --bfile after_gender --keep PCA_filtered_europeans.txt --make-bed --out after_gender_heterozyg_hapmap
@@ -235,8 +235,8 @@ cat PCA_filtered_asians.txt PCA_filtered_africans.txt PCA_filtered_mixed_race.tx
 ## 5. Sample QC - Relatedness
 
 NOTES: 
-This part is optional
--> Pihat threshold of 0.125 
+- This part is optional
+- PIHAT threshold of 0.125 
 
 ```
 plink --bfile after_gender_heterozyg_hapmap --geno 0.01 --maf 0.05 --indep-pairwise 50 5 0.5 --out pruning
@@ -261,7 +261,7 @@ grep "(--geno)" after_gender_heterozyg_pihat_mind.log > MISSINGNESS_SNPS.txt
 ```
 
 NOTES:
-Missingness by case control P > 1E-4 # needs case control status
+- Missingness by case control P > 1E-4 # needs case control status
 
 ```
 ./plink --bfile after_gender_heterozyg_pihat_mind --test-missing --out missing_snps 
