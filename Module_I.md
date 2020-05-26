@@ -44,7 +44,7 @@ Other programs you will need are:
 ---
 <a id="1"></a>
 
-## Sample QC - Genotyping call rates
+## 1. Sample QC - Genotyping call rates
 
 ```
 NOTE: did you already filter for Illumina gentrain scores??
@@ -86,7 +86,7 @@ Removed intermediate files
 ---
 <a id="2"></a>
 
-## Sample QC - Heterozygosity
+## 2. Sample QC - Heterozygosity
 
 ```
 ./plink --bfile raw.test --geno 0.01 --maf 0.05 --indep-pairwise 50 5 0.5 --out pruning
@@ -133,7 +133,7 @@ Removed intermediate files
 ---
 <a id="3"></a>
 
-## Sample QC - Gender checking
+## 3. Sample QC - Gender checking
 
 ```
 ./plink --bfile after_heterozyg_call_rate --check-sex 0.25 0.75 --maf 0.05 --out gender_check1
@@ -175,7 +175,7 @@ mv gender_check2.sexcheck GENDER_CHECK2.txt
 ---
 <a id="4"></a>
 
-## Sample QC - Ancestry
+## 4. Sample QC - Ancestry
 
 NOTE
 This part is optional 
@@ -224,7 +224,7 @@ cat PCA_filtered_asians.txt PCA_filtered_africans.txt PCA_filtered_mixed_race.tx
 ---
 <a id="5"></a>
 
-## Sample QC - Relatedness
+## 5. Sample QC - Relatedness
 
 NOTES: 
 This part is optional
@@ -245,7 +245,7 @@ cut -f 1,2 after_gender_heterozyg_hapmap_pihat.fam > IDs_after_relatedness_filte
 ---
 <a id="6"></a>
 
-## Variant QC - Missingness per variant
+## 6. Variant QC - Missingness per variant
 
 ```
 ./plink --bfile after_gender_heterozyg_hapmap_pihat --make-bed --out after_gender_heterozyg_pihat_mind --geno 0.05
@@ -264,7 +264,7 @@ sort -u missing_snps_1E4.txt > VARIANT_TEST_MISSING_SNPS.txt
 ---
 <a id="7"></a>
 
-## Variant QC - Missingness by haplotype
+## 7. Variant QC - Missingness by haplotype
 
 ```
 ./plink --bfile after_gender_heterozyg_pihat_mind_missing1 --test-mishap --out missing_hap 
@@ -279,7 +279,7 @@ sort -u missing_haps_1E4_final.txt > HAPLOTYPE_TEST_MISSING_SNPS.txt
 ---
 <a id="8"></a>
 
-## Variant QC - HWE
+## 8. Variant QC - HWE
 
 ```
 ./plink --bfile after_gender_heterozyg_pihat_hapmap_mind_missing12 --filter-controls --hwe 1E-4 --write-snplist --out HWE_snps
