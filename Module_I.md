@@ -149,8 +149,6 @@ NOTES:
 ```
 
 NOTES:
-- For neuroX data that does not have GWAS back bone, use F cut-off of 0.50 instead of 0.25/0.75 and only use the PAR region’s common variants always)
-- PAR = --chr 23 --from-bp 2699520 --to-bp 154931043 --maf 0.05 --geno 0.05 --hwe 1E-5 
 - Gender failures are stored in GENDER_FAILURES.txt
 - Gender checks are stored in GENDER_CHECK1.txt and GENDER_CHECK2.txt
 
