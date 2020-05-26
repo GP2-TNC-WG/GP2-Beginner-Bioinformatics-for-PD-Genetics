@@ -37,6 +37,15 @@ Files that you will need:
 
 This tutorial is written in R, and these are the packages you will need to install/load 
 
+```
+# Download the necessary packages 
+if (!require(dplyr)) install.packages('dplyr')
+if (!require(ggplot2)) install.packages('ggplot2')
+
+# Load the necessary packages 
+library(dplyr)
+library(ggplot2)
+```
 
 Other programs you will need are:
 - PLINK v1.9, GCTA
