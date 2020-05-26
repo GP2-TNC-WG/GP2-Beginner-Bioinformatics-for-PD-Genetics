@@ -33,7 +33,7 @@ QC is usually performed at a sample and at a variant level.
 
 Files that you will need:
 
-**Raw PLINK Binary Files** containing cases and controls (.fam, .bim, .bed files)
+- **Raw PLINK Binary Files** containing cases and controls (.fam, .bim, .bed files)
 
 This tutorial is written in R, and these are the packages you will need to install/load 
 
@@ -60,7 +60,6 @@ if not this will cause trouble at the end of this script
 
 ```
 ./plink --bfile raw.test --missing --out call_rates
-
 ```
 ### Remove call rate outliers
 
