@@ -28,7 +28,7 @@
 <a id="0"></a>
 ## 0. Getting Started
 
-Genotyping quality control (QC) is crucial to avoid spurious associations and bias. 
+Genotyping quality control (QC) is crucial step to avoid spurious associations and bias. 
 QC is usually performed at a sample and at a variant level. 
 
 Files that you will need:
@@ -56,8 +56,6 @@ Other programs you will need are:
 ## 1. Sample QC - Genotyping call rates
 
 ```
-NOTE: did you already filter for Illumina gentrain scores??
-if not perhaps you want to do that....
 
 NOTE: do all samples have a gender??
 if not those samples that do not have a gender will be removed
@@ -68,12 +66,12 @@ if not this will cause trouble at the end of this script
 ### Calculate genotyping call rates per sample
 
 ```
-./plink --bfile raw.test --missing --out call_rates
+./plink --bfile RAW.test --missing --out call_rates
 ```
 ### Remove call rate outliers
 
 ```
-plink --bfile raw.test --mind 0.05 --make-bed --out raw.test_call_rate
+./plink --bfile RAW.test --mind 0.05 --make-bed --out RAW.test_call_rate
 ```
 
 ```
@@ -97,8 +95,8 @@ NOTES:
 ## 2. Sample QC - Heterozygosity
 
 ```
-./plink --bfile raw.test --geno 0.01 --maf 0.05 --indep-pairwise 50 5 0.5 --out pruning
-./plink --bfile raw.test --extract pruning.prune.in --make-bed --out pruned_data
+./plink --bfile RAW.test --geno 0.01 --maf 0.05 --indep-pairwise 50 5 0.5 --out pruning
+./plink --bfile RAW.test --extract pruning.prune.in --make-bed --out pruned_data
 ./plink --bfile pruned_data --het --out prunedHet
 
 awk '{if ($6 <= -0.15) print $0 }' prunedHet.het > outliers1.txt
@@ -109,7 +107,7 @@ cut -f 1,2 HETEROZYGOSITY_OUTLIERS.txt > all_outliers.txt
 
 mv prunedHet.het HETEROZYGOSITY_DATA.txt
 
-./plink --bfile raw.test_call_rate --remove all_outliers.txt --make-bed --out after_heterozyg
+./plink --bfile RAW.test_call_rate --remove all_outliers.txt --make-bed --out after_heterozyg
 ```
 
 ```
@@ -237,13 +235,13 @@ NOTES:
 - PIHAT threshold of 0.125 
 
 ```
-plink --bfile after_gender_heterozyg_hapmap --geno 0.01 --maf 0.05 --indep-pairwise 50 5 0.5 --out pruning
-plink --bfile after_gender_heterozyg_hapmap --extract pruning.prune.in --make-bed --out pruned_data
-plink --bfile pruned_data --het --out prunedHet
+./plink --bfile after_gender_heterozyg_hapmap --geno 0.01 --maf 0.05 --indep-pairwise 50 5 0.5 --out pruning
+./plink --bfile after_gender_heterozyg_hapmap --extract pruning.prune.in --make-bed --out pruned_data
+./plink --bfile pruned_data --het --out prunedHet
 
-gcta64 --bfile pruned_data --make-grm --out GRM_matrix --autosome --maf 0.05 
-gcta64 --grm-cutoff 0.125 --grm GRM_matrix --out GRM_matrix_0125 --make-grm
-plink --bfile after_gender_heterozyg_hapmap --keep GRM_matrix_0125.grm.id --make-bed --out after_gender_heterozyg_hapmap_pihat
+./gcta64 --bfile pruned_data --make-grm --out GRM_matrix --autosome --maf 0.05 
+./gcta64 --grm-cutoff 0.125 --grm GRM_matrix --out GRM_matrix_0125 --make-grm
+./plink --bfile after_gender_heterozyg_hapmap --keep GRM_matrix_0125.grm.id --make-bed --out after_gender_heterozyg_hapmap_pihat
 
 cut -f 1,2 after_gender_heterozyg_hapmap.fam > IDs_before_relatedness_filter.txt
 cut -f 1,2 after_gender_heterozyg_hapmap_pihat.fam > IDs_after_relatedness_filter.txt
@@ -293,9 +291,9 @@ sort -u missing_haps_1E4_final.txt > HAPLOTYPE_TEST_MISSING_SNPS.txt
 ```
 
 ```
-mv after_gender_heterozyg_pihat_hapmap_mind_missing123.bim FILTERED.$FILENAME.bim
-mv after_gender_heterozyg_pihat_hapmap_mind_missing123.bed FILTERED.$FILENAME.bed
-mv after_gender_heterozyg_pihat_hapmap_mind_missing123.fam FILTERED.$FILENAME.fam
+mv after_gender_heterozyg_pihat_hapmap_mind_missing123.bim FILTERED.test.bim
+mv after_gender_heterozyg_pihat_hapmap_mind_missing123.bed FILTERED.test.bed
+mv after_gender_heterozyg_pihat_hapmap_mind_missing123.fam FILTERED.test.fam
 ```
 ---
 <a id="8"></a>
