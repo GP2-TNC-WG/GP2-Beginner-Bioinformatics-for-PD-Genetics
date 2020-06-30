@@ -68,7 +68,7 @@ Other programs you will need are:
 ---
 <a id="1"></a>
 
-## GRS versus disease status (Nalls et al., 2019)
+## 1. GRS versus disease status (Nalls et al., 2019)
 
 ### Calculate Score (profile) in PLINK
 
@@ -111,7 +111,7 @@ summary(grsTests)
 ---
 <a id="2"></a>
 
-## GRS versus age at onset
+## 2. GRS versus age at onset
 
 ### Subset ONLY cases perform linear regression adjusted by covariates
 
@@ -126,7 +126,7 @@ summary(grsTests)
 ---
 <a id="3"></a>
 
-## Data visualization - Violin plots
+## 3. Data visualization - Violin plots
 
 ```
 data$CASE[data$CASE ==0] <- "Controls"
@@ -142,7 +142,7 @@ ggsave("PD_GRS.jpeg", dpi = 600, units = "in", height = 6, width = 6)
 ---
 <a id="4"></a>
 
-## Data visualization -  Quantile plots
+## 4. Data visualization -  Quantile plots
 
 * Make quantiles
 
@@ -183,7 +183,7 @@ ggsave(plot = plotted, filename = "plotQuantile.png", width = 4, height = 4, uni
 ---
 <a id="5"></a>
 
-### ROC calculation
+## 5. ROC calculation
 
 * Run regression model 
 
@@ -201,7 +201,7 @@ data$reported <- ifelse(data$CASE == 1, "DISEASE","CONTROL")
 ---
 <a id="6"></a>
 
-### Data visualization - ROC plots
+## 6. Data visualization - ROC plots
 
 ```
 overlayedRocs <- ggplot(data, aes(d = CASE, m = probDisease)) + geom_roc(labels = FALSE) + geom_rocci() + style_roc(theme = theme_gray) + theme_bw() + scale_fill_brewer(palette="Spectral")
@@ -219,7 +219,7 @@ confMat
 ---
 <a id="7"></a>
 
-### Data visualization - Density plots
+## 7. Data visualization - Density plots
 
 ```
 densPlot <- ggplot(data, aes(probDisease, fill = reported, color = reported)) + geom_density(alpha = 0.5) + theme_bw()

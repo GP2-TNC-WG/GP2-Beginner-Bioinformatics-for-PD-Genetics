@@ -382,6 +382,8 @@ Figure: Nalls et al., 2019
         # Format as follows:
         # SNP	STATUS	GENE
         # chr1:154898185	0	PMVK
+	
+	# STATUS is used for color coding, where 0 and 1 will code in red or orange. This is a chance to indicate confidence of the SNPs if you desire - but can be left as all 0 or all 1 
 
 # Download the necessary packages
 if (!require(tidyverse)) install.packages('tidyverse')
