@@ -547,57 +547,6 @@ demo.head()
 
 
 
-<div>
-
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>participant_id</th>
-      <th>age_at_baseline</th>
-      <th>sex</th>
-      <th>race</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>PP-41564</td>
-      <td>22</td>
-      <td>Male</td>
-      <td>White</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>PD-PDZV843ATF</td>
-      <td>24</td>
-      <td>Male</td>
-      <td>White</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>PD-PDCK871NBR</td>
-      <td>24</td>
-      <td>Male</td>
-      <td>White</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>PP-51718</td>
-      <td>25</td>
-      <td>Male</td>
-      <td>White</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>PP-56267</td>
-      <td>25</td>
-      <td>Male</td>
-      <td>White</td>
-    </tr>
-  </tbody>
-</table>
-</div>
 
 
 
@@ -612,57 +561,6 @@ demo2.head()
 
 
 
-<div>
-
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>participant_id</th>
-      <th>age_at_baseline</th>
-      <th>sex</th>
-      <th>race</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>138</th>
-      <td>PD-PDTU629HKM</td>
-      <td>46</td>
-      <td>Male</td>
-      <td>Black or African American</td>
-    </tr>
-    <tr>
-      <th>139</th>
-      <td>PD-PDVW790ELA</td>
-      <td>46</td>
-      <td>Male</td>
-      <td>Black or African American</td>
-    </tr>
-    <tr>
-      <th>140</th>
-      <td>PD-PDJE363HFQ</td>
-      <td>46</td>
-      <td>Male</td>
-      <td>Unknown</td>
-    </tr>
-    <tr>
-      <th>141</th>
-      <td>PD-PDRT993HEF</td>
-      <td>46</td>
-      <td>Male</td>
-      <td>Asian</td>
-    </tr>
-    <tr>
-      <th>142</th>
-      <td>PD-PDWR910BPT</td>
-      <td>46</td>
-      <td>Male</td>
-      <td>White</td>
-    </tr>
-  </tbody>
-</table>
-</div>
 
 
 
@@ -698,140 +596,7 @@ duplicates
 
 
 
-<div>
 
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>deleted_participant_id</th>
-      <th>wgs_participant_id</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>BF-1091</td>
-      <td>PD-PDEB612LPE</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>BF-1098</td>
-      <td>PD-PDUA781LH0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>BF-1125</td>
-      <td>PD-PDWY520TTB</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>HB-PD_INVFA733YEF</td>
-      <td>BF-1130</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>HB-PD_INVDZ260AW1</td>
-      <td>PD-PDFK551GW2</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>HB-PD_INVEP649ZE5</td>
-      <td>PD-PDGJ885TBH</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>HB-PD_INVME305HYH</td>
-      <td>PD-PDPV262JLC</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>HB-PD_INVWE905KPJ</td>
-      <td>PD-PDKF434UCX</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>HB-PD_INVNE231ZUD</td>
-      <td>PD-PDBR042ZHH</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>PD-PDBW494GHE</td>
-      <td>BF-1100</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>HB-PD_INVRU618MM4</td>
-      <td>PD-PDCE881ME6</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>HB-PD_INVXC454FPX</td>
-      <td>PD-PDDW009MK9</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>PD-PDGU974LXR</td>
-      <td>PP-3451</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>HB-PD_INVXA119CHN</td>
-      <td>PD-PDGX770XYG</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>PD-PDJV686AAB</td>
-      <td>BF-1088</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>PD-PDKV712AWZ</td>
-      <td>PP-3615</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>PD-PDTN576BY4</td>
-      <td>BF-1132</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>PD-PDUH505FEZ</td>
-      <td>PP-3612</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>PD-PDVF405WVV</td>
-      <td>PP-3307</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>PP-50463</td>
-      <td>PD-PDZT881XTK</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>PP-50621</td>
-      <td>PD-PDBD199NY6</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>PP-51632</td>
-      <td>PD-PDAC481KNB</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>PP-53639</td>
-      <td>PD-PDYP676BLT</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>PP-54916</td>
-      <td>PD-PDMU756PTF</td>
-    </tr>
-  </tbody>
-</table>
-</div>
 
 
 
@@ -962,41 +727,6 @@ sample_ids.head()
 
 
 
-<div>
-
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>BF-1001</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>BF-1002</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>BF-1003</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>BF-1004</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>BF-1005</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
 
 ### Writing results to your Workspace Bucket
 
@@ -1013,54 +743,14 @@ with open('test_sample_ids.csv', 'w') as f:
 ls
 ```
 
-    BigQuerySampleQC.ipynb
-    BigQueryVariantQC.ipynb
-    compareNeuroXvsSeq.ipynb
-    Example - Running a GWAS-Copy1.ipynb
-    Example - Running a GWAS - deflaux.ipynb
-    flagByGATKsummaryMetrics.ipynb
-    gs:
-    hampton_temp
-    Hampton_testing.ipynb
-    HI0_getStarted.ipynb
-    HI1_flagByGATKsummaryMetrics.ipynb
-    HI2_compareNeuroXvsSeq.ipynb
-    HI3_plinkQC.ipynb
-    HI3_qcAmpPDplink.ipynb
-    HI4_reportQCresults.ipynb
-    Hirotaka_ClinicalData.ipynb
-    HIX_HeterozygosityEvaluation.ipynb
-    How_to_use_Terra_Training_Course.ipynb
-    htslib
-    Matt's copy of Hampton's notebook.ipynb
-    plink.log
-    plink_test_covs.tab
-    plink_test_pheno.tab
-    Pulling LRRK2 GBA SNCA Samples.ipynb
-    Py3 - Start Here (Hirotaka).ipynb
-    Py3 - WGS - Start Here(copy).ipynb
-    qcAmpPDplink2.ipynb
-    QC Notebook (Hirotaka).ipynb
-    QC Notebook (Matt) - Python3.ipynb
-    Rbigquery.ipynb
-    R Environment Setup .ipynb
-    reportQCresults.ipynb
-    R - Save and load R objects from workspace bucket.ipynb
-    Taking a closer look at the star alternate allele.ipynb
-    Terra_for_AMP_PD_Video1.ipynb
-    testGWAS.ipynb
-    Test - Running a GWAS.ipynb
-    test_sample_ids.csv
-    VCF_Sample_Filter.ipynb
-    WGS_sample_IDs.csv
-
+    
 
 
 ```python
 shell_do(f'gsutil -u {BILLING_PROJECT_ID} cp -r ./test_sample_ids.csv {WORKSPACE_BUCKET}')
 ```
 
-    Executing: gsutil -u fc-amp-pd-alpha cp -r ./test_sample_ids.csv gs://fc-secure-e4c969f8-ebed-4ab2-bd4c-a53cd897cddb
+    
     Copying file://./test_sample_ids.csv [Content-Type=text/csv]...
     / [1 files][ 33.4 KiB/ 33.4 KiB]                                                
     Operation completed over 1 objects/33.4 KiB.                                     
@@ -1167,87 +857,6 @@ demographics_df.head()
 
 
 
-<div>
-
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>participant_id</th>
-      <th>GUID</th>
-      <th>visit_name</th>
-      <th>visit_month</th>
-      <th>age_at_baseline</th>
-      <th>sex</th>
-      <th>ethnicity</th>
-      <th>race</th>
-      <th>education_level_years</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>PD-PDNE299YPT</td>
-      <td>PDNE299YPT</td>
-      <td>M0</td>
-      <td>0</td>
-      <td>74</td>
-      <td>Male</td>
-      <td>Not Hispanic or Latino</td>
-      <td>White</td>
-      <td>Greater than 16 years</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>PD-PDYW828VAV</td>
-      <td>PDYW828VAV</td>
-      <td>M0</td>
-      <td>0</td>
-      <td>57</td>
-      <td>Female</td>
-      <td>Not Hispanic or Latino</td>
-      <td>White</td>
-      <td>12-16 years</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>PD-PDWV958JPG</td>
-      <td>PDWV958JPG</td>
-      <td>M0</td>
-      <td>0</td>
-      <td>68</td>
-      <td>Male</td>
-      <td>Not Hispanic or Latino</td>
-      <td>White</td>
-      <td>Greater than 16 years</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>PD-PDRF387ZV3</td>
-      <td>PDRF387ZV3</td>
-      <td>M0</td>
-      <td>0</td>
-      <td>68</td>
-      <td>Male</td>
-      <td>Not Hispanic or Latino</td>
-      <td>White</td>
-      <td>12-16 years</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>PD-PDAC268KWV</td>
-      <td>PDAC268KWV</td>
-      <td>M0</td>
-      <td>0</td>
-      <td>69</td>
-      <td>Female</td>
-      <td>Not Hispanic or Latino</td>
-      <td>White</td>
-      <td>Greater than 16 years</td>
-    </tr>
-  </tbody>
-</table>
-</div>
 
 
 
@@ -1261,7 +870,7 @@ First let's look at the locations in the cloud for these files:
 shell_do(f'gsutil -u {BILLING_PROJECT_ID} ls {GS_WGS_RELEASE_PATH}')
 ```
 
-    Executing: gsutil -u fc-amp-pd-alpha ls gs://amp-pd-genomics/releases/2019_v1release_1015/wgs
+   
     gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/wgs_samples.csv
     gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/
     gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/
@@ -1274,7 +883,7 @@ Let's take a look in the `gatk` directory
 shell_do(f'gsutil -u {BILLING_PROJECT_ID} ls {GS_WGS_RELEASE_GATK_PATH}')
 ```
 
-    Executing: gsutil -u fc-amp-pd-alpha ls gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk
+    
     gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/metrics/
     gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/
 
@@ -1287,7 +896,7 @@ shell_do(f'gsutil -u {BILLING_PROJECT_ID} ls {GS_WGS_RELEASE_GATK_PATH}')
 shell_do(f'gsutil -u {BILLING_PROJECT_ID} ls {GS_WGS_RELEASE_GATK_PATH}/vcf')
 ```
 
-    Executing: gsutil -u fc-amp-pd-alpha ls gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf
+    
     gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr1.vcf.gz
     gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr1.vcf.gz.tbi
     gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/gatk/vcf/chr1.vcf.idx
@@ -1367,7 +976,7 @@ shell_do(f'gsutil -u {BILLING_PROJECT_ID} ls {GS_WGS_RELEASE_GATK_PATH}/vcf')
 shell_do(f'gsutil -u {BILLING_PROJECT_ID} ls {GS_WGS_RELEASE_PLINK_PATH}/bfile/all_vcfs*')
 ```
 
-    Executing: gsutil -u fc-amp-pd-alpha ls gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile
+    
     gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/README.txt
     gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/all_vcfs.bed
     gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/all_vcfs.bim
@@ -1406,7 +1015,7 @@ ls
 shell_do(f'gsutil -mu {BILLING_PROJECT_ID} cp {GS_WGS_RELEASE_PLINK_PATH}/bfile/all_vcfs* ~/bin/data_temp')
 ```
 
-    Executing: gsutil -mu fc-amp-pd-alpha cp gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/all_vcfs* ~/bin/data_temp
+    
     Copying gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/all_vcfs.bim...
     Copying gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/all_vcfs.log...
     Copying gs://amp-pd-genomics/releases/2019_v1release_1015/wgs/plink/bfile/all_vcfs.bed...
@@ -1428,23 +1037,6 @@ cd ~/bin/data_temp
 ls
 ```
 
-    all_vcfs.bed
-    all_vcfs.bim
-    all_vcfs.fam
-    all_vcfs.log
-    nohup.out
-    plink_updated_sex.bed
-    plink_updated_sex.bim
-    plink_updated_sex.fam
-    plink_updated_sex.hh
-    plink_updated_sex.log
-    plink_updated_sex.nosex
-    test_PD.assoc
-    test_PD.assoc.fisher
-    test_PD.assoc.fisher.adjusted
-    test_PD.hh
-    test_PD.log
-    test_PD.nosex
 
 
 
@@ -1575,45 +1167,6 @@ covs.head()
 
 
 
-<div>
-
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>participant_id</th>
-      <th>sex</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>PP-41564</td>
-      <td>Male</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>PD-PDZV843ATF</td>
-      <td>Male</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>PD-PDCK871NBR</td>
-      <td>Male</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>PP-51718</td>
-      <td>Male</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>PP-56267</td>
-      <td>Male</td>
-    </tr>
-  </tbody>
-</table>
-</div>
 
 
 
@@ -1643,63 +1196,7 @@ pheno.head()
 
 
 
-<div>
 
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>participant_id</th>
-      <th>diagnosis_at_baseline</th>
-      <th>diagnosis_latest</th>
-      <th>case_control_other_at_baseline</th>
-      <th>case_control_other_latest</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>PD-PDAB597LKL</td>
-      <td>Parkinsonism</td>
-      <td>Parkinsonism</td>
-      <td>Other</td>
-      <td>Other</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>PD-PDCT406CN9</td>
-      <td>Parkinsonism</td>
-      <td>Parkinsonism</td>
-      <td>Other</td>
-      <td>Other</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>PP-54461</td>
-      <td>Prodromal motor PD</td>
-      <td>Idiopathic PD</td>
-      <td>Other</td>
-      <td>Case</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>PP-54215</td>
-      <td>Prodromal motor PD</td>
-      <td>Idiopathic PD</td>
-      <td>Other</td>
-      <td>Case</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>PP-18567</td>
-      <td>Prodromal motor PD</td>
-      <td>Idiopathic PD</td>
-      <td>Other</td>
-      <td>Case</td>
-    </tr>
-  </tbody>
-</table>
-</div>
 
 
 
@@ -1724,52 +1221,6 @@ covsp.head()
 
 
 
-<div>
-
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>FID</th>
-      <th>IID</th>
-      <th>sex</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>PP-41564</td>
-      <td>PP-41564</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>PD-PDZV843ATF</td>
-      <td>PD-PDZV843ATF</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>PD-PDCK871NBR</td>
-      <td>PD-PDCK871NBR</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>PP-51718</td>
-      <td>PP-51718</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>PP-56267</td>
-      <td>PP-56267</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
 
 
 
@@ -1790,64 +1241,6 @@ phenop.head()
 
 
 
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>FID</th>
-      <th>IID</th>
-      <th>PHENO</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2</th>
-      <td>PP-54461</td>
-      <td>PP-54461</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>PP-54215</td>
-      <td>PP-54215</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>PP-18567</td>
-      <td>PP-18567</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>PP-40615</td>
-      <td>PP-40615</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>PP-40612</td>
-      <td>PP-40612</td>
-      <td>2</td>
-    </tr>
-  </tbody>
-</table>
-</div>
 
 
 
@@ -1873,48 +1266,7 @@ ls
 pwd
 ```
 
-    BigQuerySampleQC.ipynb
-    BigQueryVariantQC.ipynb
-    compareNeuroXvsSeq.ipynb
-    Example - Running a GWAS-Copy1.ipynb
-    Example - Running a GWAS - deflaux.ipynb
-    flagByGATKsummaryMetrics.ipynb
-    gs:
-    hampton_temp
-    Hampton_testing.ipynb
-    HI0_getStarted.ipynb
-    HI1_flagByGATKsummaryMetrics.ipynb
-    HI2_compareNeuroXvsSeq.ipynb
-    HI3_plinkQC.ipynb
-    HI3_qcAmpPDplink.ipynb
-    HI4_reportQCresults.ipynb
-    Hirotaka_ClinicalData.ipynb
-    HIX_HeterozygosityEvaluation.ipynb
-    How_to_use_Terra_Training_Course.ipynb
-    htslib
-    Matt's copy of Hampton's notebook.ipynb
-    plink.log
-    plink_test_covs.tab
-    plink_test_pheno.tab
-    Pulling LRRK2 GBA SNCA Samples.ipynb
-    Py3 - Start Here (Hirotaka).ipynb
-    Py3 - WGS - Start Here(copy).ipynb
-    qcAmpPDplink2.ipynb
-    QC Notebook (Hirotaka).ipynb
-    QC Notebook (Matt) - Python3.ipynb
-    Rbigquery.ipynb
-    R Environment Setup .ipynb
-    reportQCresults.ipynb
-    R - Save and load R objects from workspace bucket.ipynb
-    Taking a closer look at the star alternate allele.ipynb
-    Terra_for_AMP_PD_Video1.ipynb
-    testGWAS.ipynb
-    Test - Running a GWAS.ipynb
-    test_sample_ids.csv
-    VCF_Sample_Filter.ipynb
-    WGS_sample_IDs.csv
-    /home/jupyter-user/notebooks/AMP PD WGS QC Collaboration/edit
-
+   
 
 Now we'll use Plink's --update-sex command to update the fam file with the information we queried from the demographics file.
 
