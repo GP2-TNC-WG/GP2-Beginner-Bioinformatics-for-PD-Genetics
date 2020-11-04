@@ -142,8 +142,8 @@ NOTES:
 ## 3. Sample QC - Gender checking
 
 ```
-./plink --bfile after_heterozyg_call_rate --check-sex 0.25 0.75 --maf 0.05 --out gender_check1
-./plink --bfile after_heterozyg_call_rate --chr 23 --from-bp 2699520 --to-bp 154931043 --maf 0.05 --geno 0.05 --hwe 1E-5 --check-sex  0.25 0.75 --out gender_check2 
+./plink --bfile after_heterozyg --check-sex 0.25 0.75 --maf 0.05 --out gender_check1
+./plink --bfile after_heterozyg --chr 23 --from-bp 2699520 --to-bp 154931043 --maf 0.05 --geno 0.05 --hwe 1E-5 --check-sex  0.25 0.75 --out gender_check2 
 ```
 
 NOTES:
@@ -158,7 +158,7 @@ cut -f 1,2 GENDER_FAILURES.txt > samples_to_remove.txt
 ```
 
 ```
-./plink --bfile after_heterozyg_call_rate --remove samples_to_remove.txt --make-bed --out after_gender
+./plink --bfile after_heterozyg --remove samples_to_remove.txt --make-bed --out after_gender
 ```
 
 ```
