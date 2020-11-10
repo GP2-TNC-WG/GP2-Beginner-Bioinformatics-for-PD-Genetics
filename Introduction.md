@@ -1084,6 +1084,8 @@ cd ~/bin/
 
 wget http://s3.amazonaws.com/plink1-assets/plink_linux_x86_64_20190304.zip 
 
+unzip -o plink_linux_x86_64_20190304.zip
+
 fi
 ```
 
