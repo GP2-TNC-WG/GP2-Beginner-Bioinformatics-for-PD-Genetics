@@ -98,6 +98,8 @@ plink --bfile prune --pca --out EXAMPLE_UNIMPUTED.PCA
 # Read in the PCA Eigenvalues and Eigenvectors 
 print("Read in pca.eigenvec file from PLINK")
 eigenvec <- read.delim("EXAMPLE_UNIMPUTED.eigenvec", sep ="\t", header = T, stringsAsFactors = F)
+	# If having issues reading in the eigenvectors this way, consider the following:
+		# eigenvec <- read.table("YOURFILE.eigenvec", quote="\"", comment.char="")
 
 # Read in the .fam file
 fam <- fread("EXAMPLE_UNIMPUTED.fam", header = F)
@@ -234,8 +236,6 @@ Figure: Unpublished Data
 # Read in the PCA Eigenvalues and Eigenvectors 
 print("Read in pca.eigenval files from PLINK")
 eigenval <- read.delim("IPDGC_all_to_include_plink2.eigenval", sep ="\t", header = F, stringsAsFactors = F)
-	# If having issues reading in the eigenvalues this way, consider the following:
-		# eigenvec <- read.table("YOURFILE.eigenvec", quote="\"", comment.char="")
 
 # Update column names
 colnames(eigenval)[1] <- "Eigenvalues"
