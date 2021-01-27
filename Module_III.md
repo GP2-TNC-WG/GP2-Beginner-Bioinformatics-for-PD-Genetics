@@ -1,4 +1,4 @@
-## Module III.  GWAS for Binary and Quantitative Traits 
+## Module III.  GWAS for Binary and Quantitative Traits
 
 ### Information
 - **Created by:** GP2 Training and Networking
@@ -32,13 +32,13 @@ Files that you will need:
 
 -   **QC’d Imputed PLINK Binary Files** containing cases and controls (.fam, .bim, .bed files)
 	-   These have gone through Michigan Server imputation and the soft/hard-call QC steps outlined in Module II
-   
+
 -   **Covariates File** containing the covariates you would like to correct by (more on this in section 1)
 	-  	This file at a minimum includes sample information (such as ID, SEX, PHENO) and principle components
 
-This tutorial is written in R, and these are the packages you will need to install/load 
+This tutorial is written in R, and these are the packages you will need to install/load
 ```R
-# Download the necessary packages 
+# Download the necessary packages
 if (!require(tidyverse)) install.packages('tidyverse')
 if (!require(data.table)) install.packages('data.table')
 if (!require(dplyr)) install.packages('dplyr')
@@ -46,7 +46,7 @@ if (!require(plyr)) install.packages('plyr')
 if (!require(ggplot2)) install.packages('ggplot2')
 if (!require(qqman)) install.packages('qqman')
 
-# Load the necessary packages 
+# Load the necessary packages
 library(tidyverse)
 library(data.table)
 library(dplyr)
@@ -71,31 +71,36 @@ Other programs you will need are:
 	-   Adding covariates is beneficial because non-confounding covariates can explain some of the variance → reducing noise
 - What is included in a covariates file?
 	- This file at a minimum includes sample information (such as ID, SEX, PHENO) and principle components
-	- If you have additional covariates you'd like to use (such as AGE, FAMILY HISTORY, EDUCATION etc.) you can merge these into the covariate file 
+	- If you have additional covariates you'd like to use (such as AGE, FAMILY HISTORY, EDUCATION etc.) you can merge these into the covariate file
 - How do you generate the PCs?
 	- This is done in PLINK
 
 ### Generating Principal Components in PLINK
+> ***Note:*** If you have a file with the high LD regions for your ancestry group on hand, it is *highly recommended* you remove those regions prior to generating principal components, as these can have a large effect on your PCs!
+
 ```bash
-# Make sure to use high-quality SNPs 
+# Make sure to use high-quality SNPs
 plink --bfile EXAMPLE_UNIMPUTED_QC --maf 0.01 --geno 0.05 --hwe 1E-6 --make-bed --out EXAMPLE_UNIMPUTED
 
+# If you have a .txt file that has LD regions, you can exclude them by including the following command above
+    # --exclude longLD_hg38_euro.txt
+
 # Prune out unnecessary SNPs (only need to do this to generate PCs)
-plink --bfile EXAMPLE_UNIMPUTED --indep-pairwise 50 5 0.5 --out prune 
+plink --bfile EXAMPLE_UNIMPUTED --indep-pairwise 50 5 0.5 --out prune
 
 # Keep only pruned SNPs (only need to do this to generate PCs)
-plink --bfile EXAMPLE_UNIMPUTED --extract prune.prune.in --make-bed --out prune 
+plink --bfile EXAMPLE_UNIMPUTED --extract prune.prune.in --make-bed --out prune
 
-# Generate PCs 
+# Generate PCs
 plink --bfile prune --pca --out EXAMPLE_UNIMPUTED.PCA
 ```
 
 
-### Generating a Covariate File in R 
+### Generating a Covariate File in R
 ```R
-# Generate a covariate file 
+# Generate a covariate file
 
-# Read in the PCA Eigenvalues and Eigenvectors 
+# Read in the PCA Eigenvalues and Eigenvectors
 print("Read in pca.eigenvec file from PLINK")
 eigenvec <- read.delim("EXAMPLE_UNIMPUTED.eigenvec", sep ="\t", header = T, stringsAsFactors = F)
 	# If having issues reading in the eigenvectors this way, consider the following:
@@ -104,22 +109,22 @@ eigenvec <- read.delim("EXAMPLE_UNIMPUTED.eigenvec", sep ="\t", header = T, stri
 # Read in the .fam file
 fam <- fread("EXAMPLE_UNIMPUTED.fam", header = F)
 
-# Read in other covariates 
+# Read in other covariates
   # RANDOM AGES AND EDUCATION LEVELS !!
   # Format
     # FID IID AGE EDUCATION ETC
 additional_cov <- fread("SAMPLE_COVARIATES.txt")
 
-# Rename the columns 
+# Rename the columns
 colnames(fam) <- c("FID", "IID", "PAT", "MAT", "SEX", "PHENO")
 
-# Combine the covariate file with the fam file 
+# Combine the covariate file with the fam file
 pheno_pcs <- left_join(fam, additional_cov, by=c("FID", "IID"))
 
-# Now combine the additional covariates 
+# Now combine the additional covariates
 combined <- left_join(pheno_pcs, eigenvec, by=c("FID", "IID"))
 
-# Save out the pheno_pcs file 
+# Save out the pheno_pcs file
 write.table(combined, file = "EXAMPLE_covariateFile_10PCs.txt", row.names=FALSE, na="", quote = FALSE, sep="\t")
 
 ```
@@ -145,7 +150,7 @@ FID	IID	PAT	MAT	SEX	PHENO	AGE	EDUCATION	PC1	PC2	PC3	PC4	PC5	PC6	PC7	PC8	PC9	PC10
 You can choose to run a GWAS in RVTests
 A GWAS will only be run post-imputation and if it has been QC'd, as shown in Modules I and II.
 
-### Running a GWAS in PLINK 
+### Running a GWAS in PLINK
 ```bash
 plink --bfile IMPUTED.HARDCALLS.Demo \
 --logistic --ci 0.95 \
@@ -178,7 +183,7 @@ rvtest --noweb --hide-covar \
 --pheno covariateFile_forGWAS.txt \
 --pheno-name PHENO \
 --covar covariateFile_forGWAS.txt \
---covar-name AGE,SEX,EDUCATION,PC1,PC2,PC3,PC4,PC5,PC6,PC7,PC8,PC9,PC10 
+--covar-name AGE,SEX,EDUCATION,PC1,PC2,PC3,PC4,PC5,PC6,PC7,PC8,PC9,PC10
 done
 ```
 
@@ -198,14 +203,14 @@ done
     -   In addition to SNP and P-value, information such as effect allele, directionality, frequency, standard error, etc. can also be found in summary statistics
  - Can summary statistics be made public?
 	 - Yes! In fact, you should strive to make all your summary statistics public
-    
+
 
 -   Where can I find more summary statistics?
 	- NHGRI-EBI have a website where they curate GWAS summary statistics, available for public download with their accompanying manuscripts at [GWAS Catalog](https://www.ebi.ac.uk/gwas/)
 
 
 ### Generating Summary Statistics
-Summary statistics are the output of PLINK's `--logistic` or RVTests `--single wald` 
+Summary statistics are the output of PLINK's `--logistic` or RVTests `--single wald`
 
 
 ---
@@ -229,11 +234,11 @@ Figure: Unpublished Data
 	-  The higher the point, the more % variance can be explained by that PC
 	- Typically for a GWAS, the plateau happens at PC4 or PC5
 
-### Making a Scree Plot in R 
+### Making a Scree Plot in R
 ```R
-# Making a Scree plot 
+# Making a Scree plot
 
-# Read in the PCA Eigenvalues and Eigenvectors 
+# Read in the PCA Eigenvalues and Eigenvectors
 print("Read in pca.eigenval files from PLINK")
 eigenval <- read.delim("IPDGC_all_to_include_plink2.eigenval", sep ="\t", header = F, stringsAsFactors = F)
 
@@ -245,12 +250,12 @@ eigenval$VarianceExplained <- eigenval$Eigenvalues/sum(eigenval$Eigenvalues)*100
 # Keeping only the first 10 PCs
 eigenval2 <- head(eigenval,10)
 
-# Generating the plot 
+# Generating the plot
 scree <- ggplot(data = eigenval2, aes(x = PC, y = VarianceExplained)) +
-  geom_line() + 
+  geom_line() +
   geom_point() +
   theme_bw() +
-  theme(panel.grid.minor = element_blank()) + 
+  theme(panel.grid.minor = element_blank()) +
   scale_x_continuous(name = "Principal Components", breaks = seq(0,10,1), limits = c(NA,10)) +
   scale_y_continuous(name = "Percent (%) Variance Explained", breaks = seq(0,50,5), limits = c(0,50)) +
   ggtitle("Scree Plot: \n IPDGC Samples \n (2,1478 Cases; 2,4388 Controls)") +
@@ -286,7 +291,7 @@ Figure: Unpublished Data
 	- You can generate a QQ plot pre- or post-imputation
 	-  Post-imputation will be closer to the normal distribution and will look better
 
-### Generating an `.assoc` file in PLINK 
+### Generating an `.assoc` file in PLINK
 ```bash
 plink --bfile EXAMPLE_UNIMPUTED_QC \
 --assoc --out EXAMPLE_UNIMPUTED_ASSOC
@@ -299,8 +304,8 @@ plink --bfile EXAMPLE_UNIMPUTED_QC \
 ```R
 # Making a QQ Plot
   # You can make a QQ plot pre- or post- imputation
-  # This script shows you how to plot it pre-imputation 
-  # FUMA GWAS will generate a QQ Plot post imputation for you :) 
+  # This script shows you how to plot it pre-imputation
+  # FUMA GWAS will generate a QQ Plot post imputation for you :)
 
 # Read in the .fam file
 fam.file  <- fread("EXAMPLE_UNIMPUTED_QC.fam")
@@ -308,7 +313,7 @@ fam.file  <- fread("EXAMPLE_UNIMPUTED_QC.fam")
 # Separate out the cases
 case <- sum(fam.file[,6] == 2)
 
-# Separate out the controls 
+# Separate out the controls
 control <-  sum(fam.file[,6] == 1)
 
 # Read in the .assoc file  
@@ -321,27 +326,27 @@ assoc.df = assoc.df[complete.cases(assoc.df), ]
 assoc.df$CHISQ <- qchisq(assoc.df$P, 1, lower.tail=FALSE)
 
 # qchisq(assoc.df$P,1,lower.tail=FALSE) can convert p-value (even < 5.5e-17) to chisq
-    # while qchisq(1-assoc.df$P,1) fails to convert small p-value (Inf in this case) 
+    # while qchisq(1-assoc.df$P,1) fails to convert small p-value (Inf in this case)
 
-# Calculate lambda 
+# Calculate lambda
 lambda <- median(assoc.df$CHISQ) / qchisq(0.5, 1)
 
-# Calculate the lambda 1000 
+# Calculate the lambda 1000
 lambda1000 <- 1 + (lambda - 1) * (1 / case + 1 / control) * 500
- 
+
 # qchisq(0.5,1) will give 0.4549364
 # some people directly / 0.454 which may cause slightly different result
 # chisq = z**2
 # z <- qnorm(p-value/2)
- 
+
 # Make the QQ Plot
 qqplot <- qq(assoc.df$P, main = "Q-Q plot of Pre-Imputed GWAS p-values")
 
-# Print out the lambda statistics 
+# Print out the lambda statistics
 lambda1 <- paste('The lambda value is: ', lambda, sep="")
 lambda10001 <- paste('The lambda 1000 value is: ', lambda1000, sep="")
 
-# Write out the lambda statistics to an external .txt file 
+# Write out the lambda statistics to an external .txt file
 lambda_stats<-file("lambda_stats.txt")
 writeLines(c(paste(lambda1, lambda10001)), lambda_stats)
 close(lambda_stats)
@@ -361,7 +366,7 @@ ggsave("QQPlot_UNIMPUTED.jpg", qqplot, width = 5, height = 5, units = "in")
 
 Figure: Nalls et al., 2019
 
-### Background Information 
+### Background Information
 
 -   What is a Manhattan plot?
 	-   A Manhattan plot (named after the Manhattan skyline) is a type of scatter plot
@@ -374,7 +379,7 @@ Figure: Nalls et al., 2019
 	-   Each SNP is a point, separated by chromosomes
 	- The smaller the p-value → higher on the plot → more significant association
 ```R
-## Requirements: 
+## Requirements:
     # gwasFile: A file containing GWAS summary statistics. Mandatory columns to include are SNP, CHR, BP and P
         # Format as follows:  
         # SNP	CHR	BP	P
@@ -384,8 +389,8 @@ Figure: Nalls et al., 2019
         # Format as follows:
         # SNP	STATUS	GENE
         # chr1:154898185	0	PMVK
-	
-	# STATUS is used for color coding, where 0 and 1 will code in red or orange. This is a chance to indicate confidence of the SNPs if you desire - but can be left as all 0 or all 1 
+
+	# STATUS is used for color coding, where 0 and 1 will code in red or orange. This is a chance to indicate confidence of the SNPs if you desire - but can be left as all 0 or all 1
 
 # Download the necessary packages
 if (!require(tidyverse)) install.packages('tidyverse')
@@ -399,11 +404,11 @@ library("data.table")
 library("reshape2")
 library("ggrepel")
 
-# Read in the data 
+# Read in the data
 gwas <- fread("GWAS_file.txt")
 hits <- fread("SNPs_of_Interest.txt")
 
-# Mung the GWAS summary statistics 
+# Mung the GWAS summary statistics
     # Factor code the p-values as per Pulit et al., 2016
 gwas$log10Praw <- -1*log(gwas$P, base = 10)
 gwas$log10P <- ifelse(gwas$log10Praw > 40, 40, gwas$log10Praw)
@@ -412,10 +417,10 @@ gwas$Plevel[gwas$P < 5E-08] <- "possible"
 gwas$Plevel[gwas$P < 5E-09] <- "likely"
 
 # Reduction of the GWAS object
-    # This is for more efficient plotting 
+    # This is for more efficient plotting
     # This drops everything not useful in future AUC calcs estiamte in Nalls et al., 2019
 
-gwasFiltered <- subset(gwas, log10P > 3.114074) 
+gwasFiltered <- subset(gwas, log10P > 3.114074)
 
 # Highlight the hits of interest to annotate
 snpsOfInterest <- hits$SNP
@@ -424,40 +429,40 @@ snpsOfInterest <- hits$SNP
 gwasToPlotUnsorted <- merge(gwasFiltered, hits, by = "SNP", all.x = T)
 gwasToPlot <- gwasToPlotUnsorted[order(gwasToPlotUnsorted$CHR,gwasToPlotUnsorted$BP),]
 
-# Prepare the dataset to plot 
-plotting <- gwasToPlot %>% 
-    group_by(CHR) %>% # Space out the chromosomes accordingly 
-    summarize(chr_len=max(BP)) %>% 
-    
-    mutate(tot=cumsum(chr_len)-chr_len) %>% # Calculate the cumulative position of each chromosome 
+# Prepare the dataset to plot
+plotting <- gwasToPlot %>%
+    group_by(CHR) %>% # Space out the chromosomes accordingly
+    summarize(chr_len=max(BP)) %>%
+
+    mutate(tot=cumsum(chr_len)-chr_len) %>% # Calculate the cumulative position of each chromosome
     select(-chr_len) %>%
-    
-    left_join(gwasToPlot, ., by=c("CHR"="CHR")) %>% # Have this information added to the original dataset so you can subset it for plotting 
-    
+
+    left_join(gwasToPlot, ., by=c("CHR"="CHR")) %>% # Have this information added to the original dataset so you can subset it for plotting
+
     arrange(ordered(CHR), BP) %>%
     mutate(BPcum=BP+tot) %>% # Space out the SNPs accordingly
-    
-    mutate(is_highlight=ifelse(SNP %in% snpsOfInterest, "yes", "no")) %>% # Highlight the hits 
-    mutate(is_annotate=ifelse(log10P>7.30103, "yes", "no")) 
 
-# Have the x-axis accomodate all chromosome sizes 
+    mutate(is_highlight=ifelse(SNP %in% snpsOfInterest, "yes", "no")) %>% # Highlight the hits
+    mutate(is_annotate=ifelse(log10P>7.30103, "yes", "no"))
+
+# Have the x-axis accomodate all chromosome sizes
 axisdf <- plotting %>% group_by(CHR) %>% summarize(center=( max(BPcum) + min(BPcum) ) / 2 )
 
 # Make the plot panel
 thisManhattan <- ggplot(plotting, aes(x=BPcum, y=log10P)) +
-    geom_point(aes(color=as.factor(CHR)), alpha=0.8, size=1.3) + # Show all the points and color depending on chromosome 
+    geom_point(aes(color=as.factor(CHR)), alpha=0.8, size=1.3) + # Show all the points and color depending on chromosome
     scale_color_manual(values = rep(c("light grey", "dark grey"), 22 )) +
-    
+
     scale_x_continuous(label = axisdf$CHR, breaks= axisdf$center ) + # Custom X axis that removes the spaces between X axis and SNPs
     scale_y_continuous(expand = c(0, 0) ) +
     geom_point(data=subset(plotting, is_highlight=="yes" & Plevel == "likely"), color = "red", size = 2) + # add highlighted points, these highlighted points are adding an estimate of confidence for "genome-wide significant hits"
     geom_point(data=subset(plotting, is_highlight=="yes" & Plevel == "possible"), color = "orange", size = 2) + # red = more likely to replicate than orange -- related to Pulit et al. 2016
-    
+
     geom_label_repel(data=subset(plotting, is_annotate=="yes"), aes(label=GENE, fill=factor(STATUS)), alpha = 0.5,  size=2) + # # add label using ggrepel to avoid overlapping, here the label color coding is STATUS from the hits file and the text is the GENE from that file
     scale_fill_manual(values = c("aquamarine","cyan")) +
-    
+
     theme_bw() +
-    theme( 
+    theme(
         legend.position="none",
         panel.border = element_blank(),
         panel.grid.major.x = element_blank(),
@@ -466,7 +471,7 @@ thisManhattan <- ggplot(plotting, aes(x=BPcum, y=log10P)) +
     xlab("BP") +
     ylab("-log10P")
 
-# Export it 
+# Export it
 ggsave("ManhattanPlot.pdf", thisManhattan, width = 12, height = 5, dpi=300, units = "in")
 ggsave("ManhattanPlot.jpg", thisManhattan, width = 12, height = 5, dpi=300, units = "in")
 ```
@@ -491,7 +496,7 @@ From their [website](https://fuma.ctglab.nl/):
 -   How do I get started with FUMA?
 	-   Register with your email address
     -   Summary statistics ready with rsIDs (can merge with HRC)
-    
+
 -   What kind of information can I get?
 	-  GWAS-based and gene-based Manhattan and QQ plots
 	-  Gene set analysis
@@ -521,22 +526,22 @@ if (!require(data.table)) install.packages('data.table')
 if (!require(dplyr)) install.packages('dplyr')
 if (!require(plyr)) install.packages('plyr')
 
-# Load the necessary packages 
+# Load the necessary packages
 library(tidyverse)
 library(data.table)
 library(dplyr)
 
-# Read in modified HRC panel file 
+# Read in modified HRC panel file
 hrc_panel <- fread("HRC_RS_conversion_final_new_imputation_server2.txt")
 
 # Read in the GWAS summary statistics
-  # Downloaded from GWAS catalog: Blauwendraat et al., 2019 PD AAO GWAS: https://www.ebi.ac.uk/gwas/publications/30957308#study_panel 
+  # Downloaded from GWAS catalog: Blauwendraat et al., 2019 PD AAO GWAS: https://www.ebi.ac.uk/gwas/publications/30957308#study_panel
 gwas_sumstats <- fread("IPDGC_AAO_GWAS_sumstats_april_2018.txt")
 
 head(gwas_sumstats)
 head(hrc_panel)
 
-# Create an HRC file that will work better merging in the future 
+# Create an HRC file that will work better merging in the future
 result <- data.frame(hrc_panel, do.call(rbind, strsplit(as.character(hrc_panel$POS), ":", fixed = TRUE)))
 
 colnames(result) <- c("rsID", "ID2", "MarkerName", "POS", "REF", "ALT", "CHR", "BP")
@@ -550,7 +555,7 @@ write.table(resort2, file = "HRC_RS_conversion_final_new_imputation_server2_wCHR
 # Merge
 merged <- left_join(gwas_sumstats, resort2, by="MarkerName")
 
-#Rename 
+#Rename
 rename_merged <- merged %>% dplyr::rename("A1"="Allele1",
                                           "A2"="Allele2",
                                           "SE" = "StdErr",
@@ -576,13 +581,13 @@ chr4:90757309   a       g       0.201   0.0189  0.1334  0.2317  0.804   0.1468  
 ## 8. Logistic versus Linear Regressions
 
 -   What is the difference between logistic and linear regression?
-	-   Logistic regression is used to 
+	-   Logistic regression is used to
 		- Predict for binary outcomes (one of 2 options)
 		- Effect reported is the log of odds ratios
-	- Linear regression is used to 
+	- Linear regression is used to
 		- Predict for continuous outcomes (one of many options)
 		- Effect reported is the beta
-    
+
 -   When do you know what to use?
 	- Use logistic regression if you are trying to predict for a binary outcome, like disease status (yes or no)
 	- The example we are working through falls in this category!
