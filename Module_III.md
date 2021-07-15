@@ -534,6 +534,18 @@ library(dplyr)
 # Read in modified HRC panel file
 hrc_panel <- fread("HRC_RS_conversion_final_new_imputation_server2.txt")
 
+	# Format looks like the following
+	# ID	ID2	CHR:POS	POS	REF	ALT
+	# rs10	7:92383888:A:C	chr7:92383888	7:92383888	A	C
+	# rs1000000	12:126890980:G:A	chr12:126890980	12:126890980	G	A
+	# rs10000000	4:40088896:A:T	chr4:40088896	4:40088896	A	T
+	# rs10000003	4:57561647:A:G	chr4:57561647	4:57561647	A	G
+	# rs10000005	4:85161558:G:A	chr4:85161558	4:85161558	G	A
+	# rs10000006	4:108826383:T:C	chr4:108826383	4:108826383	T	C
+	# rs10000007	4:114553253:A:C	chr4:114553253	4:114553253	A	C
+	# rs10000008	4:172776204:C:T	chr4:172776204	4:172776204	C	T
+	# rs10000009	4:71048953:A:G	chr4:71048953	4:71048953	A	G
+
 # Read in the GWAS summary statistics
   # Downloaded from GWAS catalog: Blauwendraat et al., 2019 PD AAO GWAS: https://www.ebi.ac.uk/gwas/publications/30957308#study_panel
 gwas_sumstats <- fread("IPDGC_AAO_GWAS_sumstats_april_2018.txt")
