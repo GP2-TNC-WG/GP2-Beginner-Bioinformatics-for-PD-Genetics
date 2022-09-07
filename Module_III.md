@@ -380,11 +380,11 @@ Figure: Nalls et al., 2019
 	- The smaller the p-value → higher on the plot → more significant association
 ```R
 ## Requirements:
-    # gwasFile: A file containing GWAS summary statistics. Mandatory columns to include are SNP, CHR, BP and P
+    # gwasFile (`GWAS_file.txt`): A file containing GWAS summary statistics. Mandatory columns to include are SNP, CHR, BP and P
         # Format as follows:  
         # SNP	CHR	BP	P
         # chr1:60320992	1	60320992	0.38
-    # hitsFile: A file containing annotation for GWAS hits of interest. Mandatory columns to include are SNP, STATUS and GENE
+    # hitsFile (`SNPs_of_Interest.txt`): A file containing annotation for GWAS hits of interest. Mandatory columns to include are SNP, STATUS and GENE
         # SNPs of interest are listed with a STATUS indicator (binary) and a GENE label (character strings).
         # Format as follows:
         # SNP	STATUS	GENE
